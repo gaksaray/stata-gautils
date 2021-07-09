@@ -1,0 +1,4 @@
+v 3
+d D-directory
+
+p dichotomize module to dichotomize a numeric variable

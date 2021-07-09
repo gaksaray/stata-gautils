@@ -1,0 +1,12 @@
+v 3
+d A collection of Stata utility modules by Gorkem Aksaray <gaksaray@ku.edu.tr>
+
+t c
+t d
+t e
+t f
+t m
+t p
+t r
+t s
+t u

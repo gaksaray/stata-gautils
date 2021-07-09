@@ -1,0 +1,4 @@
+v 3
+d P-directory
+
+p purge module to purge (reduce) Stata memory while preserving the dataset

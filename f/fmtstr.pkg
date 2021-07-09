@@ -1,0 +1,12 @@
+v 3
+d 'FMTSTR': module to reformat string variables
+d
+d {cmd:fmtstr} compressed display format of string variables to their shortest
+d visible form.
+d
+d Distribution-Date: 20210702
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f fmtstr.ado

@@ -1,0 +1,5 @@
+v 3
+d F-directory
+d Gorkem Aksaray, gaksaray@ku.edu.tr
+
+p fmtstr module to reformat string variables

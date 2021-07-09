@@ -1,0 +1,17 @@
+v 3
+d 'RESHAPE2L': module to quickly convert data from wide to long form
+d
+d {cmd:reshape2l} is a Stata module to quickly convert data from wide to long form.
+d It is primarily used in situations where stubnames are followed by numeric parts,
+d which is often the case for raw panel datasets.
+d
+d KW: reshape long
+d
+d Distribution-Date: 20210406
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f reshape2l.ado
+f reshape2l.sthlp
+F test.do

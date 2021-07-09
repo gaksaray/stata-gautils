@@ -1,0 +1,14 @@
+v 3
+d 'CAPDROP': module to drop a list of variables without an error
+d
+d {cmd:capdrop} drops a list of variables from the dataset. It is essentially a
+d wrapper for {cmd:capture drop} and useful when you want to drop a group of
+d variables but do not want your program to stop if one or more of specified
+d variables are not currently in the dataset.
+d
+d Distribution-Date: 20210630
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f capdrop.ado

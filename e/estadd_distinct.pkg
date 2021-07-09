@@ -1,0 +1,12 @@
+v 3
+d 'ESTADD_DISTINCT': module to add estout scalar for the number of distinct values
+d
+d {cmd:estadd_distinct} is an add-on to {cmd:estout} command by Ben Jann. It adds
+d scalar for the number of distinct values of a defined variable.
+d
+d Distribution-Date: 20210630
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f estadd_distinct.ado

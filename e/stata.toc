@@ -1,0 +1,6 @@
+v 3
+d E-directory
+
+p eps2pdf module to convert EPS files to PDF files
+p estadd_distinct module to add estout scalar for the number of distinct values
+p estcorr module to post correlations in sequential manner

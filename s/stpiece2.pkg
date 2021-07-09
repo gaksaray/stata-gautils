@@ -1,0 +1,16 @@
+v 3
+d 'STPIECE2': module to estimate piecewise-constant exponential model
+d
+d {cmd:stpiece2} estimates piecewise-constant exponential model while allowing for
+d factor variables to be used. This is a modern rewriting of the original
+d command by Jesper B. Sorensen with minor improvements.
+d
+d KW: survival-time data
+d
+d Distribution-Date: 20210406
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f stpiece2.ado
+f stpiece2.sthlp

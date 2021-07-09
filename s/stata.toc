@@ -1,0 +1,4 @@
+v 3
+d S-directory
+
+p stpiece2 module to estimate piecewise-constant exponential model

@@ -1,0 +1,13 @@
+v 3
+d 'MAXVARLEN': module to calculate maximum character length of list of variables
+d
+d {cmd:maxvarlen} calculates and returns maximum character length of list of
+d variables or of their variable labels.
+d
+d Distribution-Date: 20210207
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f maxvarlen.ado
+f maxvarlen.sthlp

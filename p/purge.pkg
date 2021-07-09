@@ -1,0 +1,12 @@
+v 3
+d 'PURGE': module to purge (reduce) Stata memory while preserving the dataset
+d
+d Purge (reduce) Stata memory while preserving the dataset.
+d
+d Distribution-Date: 20210207
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f purge.ado
+f purge.sthlp

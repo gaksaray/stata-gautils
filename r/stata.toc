@@ -1,0 +1,4 @@
+v 3
+d R-directory
+
+p reshape2l module to quickly convert data from wide to long form

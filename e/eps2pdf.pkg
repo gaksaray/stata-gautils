@@ -1,0 +1,17 @@
+v 3
+d 'EPSTOPDF': module to convert EPS files to PDF files
+d
+d {cmd:epstopdf} uses Windows shell to convert EPS files in the directory
+d speficied (relative or absolute) to PDF. It relies on LaTeX's epstopdf
+d script; therefore mimimum LaTeX system must be installed on the computer.
+d
+d KW: Encapsulated PostScript
+d KW: Portable Document Format
+d
+d Distribution-Date: 20210206
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f epstopdf.ado
+f epstopdf.sthlp

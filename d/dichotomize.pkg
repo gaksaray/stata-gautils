@@ -1,0 +1,14 @@
+v 3
+d 'DICHOTOMIZE': module to dichotomize a numeric variable
+d
+d {cmd:dichotomize} creates a binary variable out of a numeric variable. It can
+d flexibly specify the values to be mapped to 1, label and orders the created
+d binary variable in a single line.
+d
+d Distribution-Date: 20210209
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f dichotomize.ado
+f dichotomize.sthlp

@@ -1,0 +1,17 @@
+v 3
+d 'UNIQUEBY': module to report number of unique values by group
+d
+d {cmd:uniqueby} is a Stata module to report number of unique values by group.
+d It displays and stores the number of unique values of a variable for each
+d group specified in by() option.
+d
+d KW: unique
+d KW: distinct
+d
+d Distribution-Date: 20210207
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f uniqueby.ado
+f uniqueby.sthlp
