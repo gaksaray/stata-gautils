@@ -1,0 +1,20 @@
+v 3
+d 'MUTATE': module to add new variables that are functions of existing variables
+d
+d {cmd:mutate} applies a transformation (currently square, ln/log, and exponential)
+d to a list of variables. It also has several convenience options. For example,
+d imagine you have a several non-negative variables that you want to take the
+d log of. But because these have many zero values, you would like to add 1 to
+d them before taking the log. You can do so in one line by preadd() option. Or
+d let say you want to create squared terms for bunch of variables, and some of
+d them are large so that you want to scale the squared terms by dividing by
+d 10^x, where x can be specified differently for each variable. You can do that
+d too in one line with {cmd:mutate}. Type {inp:which mutate} in Stata after
+d downloading the module to see its syntax and a few examples.
+d
+d Distribution-Date: 20210710
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f mutate.ado

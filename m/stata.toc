@@ -2,3 +2,4 @@ v 3
 d M-directory
 
 p maxvarlen module to calculate maximum character length of list of variables
+p mutate module to add new variables that are functions of existing variables

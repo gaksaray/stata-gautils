@@ -19,6 +19,7 @@ f e/estcorr.ado
 f f/fmtstr.ado
 f m/maxvarlen.ado
 f m/maxvarlen.sthlp
+f m/mutate.ado
 f p/purge.ado
 f p/purge.sthlp
 f r/reshape2l.ado
