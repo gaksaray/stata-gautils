@@ -1,7 +1,7 @@
 # stata-gautils
 
-This is a collection of Stata modules that I developed and use across several of
-my projects.
+This is a collection of Stata utility modules that I developed and use across
+several of my projects.
 
 ## Installation
 
@@ -31,4 +31,5 @@ net install gautils, from("https://raw.github.com/gaksaray/stata-gautils/master"
 
 To see how a command works, type `help [command]` within Stata to view `.sthlp`
 file. For commands with no help files, you can type `which [command]` as I tend
-to include a short explanation of the command at the top of `.ado` files.
+to include a short explanation of the command along with several examples at the
+top of `.ado` files.

@@ -1,4 +1,4 @@
 v 3
 d U-directory
 
-p uniqueby
+p uniqueby module to report number of unique values by group
