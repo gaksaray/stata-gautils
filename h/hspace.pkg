@@ -1,0 +1,14 @@
+v 3
+d 'HSPACE': module to add LaTeX horizontal spaces to variable and value labels
+d
+d {cmd:hspace} adds LaTeX \hspace{} to all or specified variable and value labels.
+d This is useful when labels are used in posting LaTeX tables and you want to
+d create a visual hierarchy (for example when using with {cmd:estout}'s refcat
+d option) by moving some of variables horizontally.
+d
+d Distribution-Date: 20210712
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f hspace.ado

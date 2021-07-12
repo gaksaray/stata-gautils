@@ -1,0 +1,4 @@
+v 3
+d H-directory
+
+p hspace module to add LaTeX horizontal spaces to variable and value labels
