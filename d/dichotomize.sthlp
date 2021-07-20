@@ -1,11 +1,11 @@
 {smcl}
-{* version 1.2  10jul2021}{...}
+{* *! version 1.2  10jul2021}{...}
 {viewerjumpto "Syntax" "dichotomize##syntax"}{...}
 {viewerjumpto "Description" "dichotomize##description"}{...}
 {viewerjumpto "Options" "dichotomize##options"}{...}
 {viewerjumpto "Examples" "dichotomize##examples"}{...}
 {viewerjumpto "Author" "dichotomize##author"}{...}
-{cmd:help dichotomize}{right: {browse "https://github.com/gaksaray/stata-gautil/"}}
+{cmd:help dichotomize}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 
 {title:Title}
