@@ -1,0 +1,22 @@
+v 3
+d 'GRPVARS': module to create and manage variable groups
+d
+d {cmd:grpvars} is a collection of commands to create and manage variable groups.
+d A variable group is essentially a list of variables saved in a global macro
+d with the name specified by the {opt name()} option. {cmd:grpvars} commands can
+d conveniently manipulate these macros, and maintain their properties in memory.
+d This is especially useful for managing sets of variables to be used in several
+d tables. For example, you can specify the base model for the whole project, and
+d rather than redefining the global macro for the variable list,
+d add/remove/replace variables according to the specific needs of the current
+d table. This enables one to more easily narrate the variable selection process.
+d {cmd:grpvars} also maintains $refcat global macro if {opt title} option is
+d specified, to be used in {help estout##refcat:estout}.
+d
+d Distribution-Date: 20210713
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f grpvars.ado
+f grpvars.sthlp

@@ -1,0 +1,4 @@
+v 3
+d G-directory
+
+p grpvars module to create and manage variable groups
