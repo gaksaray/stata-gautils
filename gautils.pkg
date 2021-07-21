@@ -3,11 +3,12 @@ d 'GAUTILS': a collection of Stata utility modules
 d
 d A collection of Stata utility modules.
 d
-d Distribution-Date: 20210720
+d Distribution-Date: 20210721
 d
 d Author: Gorkem Aksaray, Koc University
 d Support: gaksaray@ku.edu.tr
 d
+f gautils.sthlp
 f c/capdrop.ado
 f c/clearlab.ado
 f d/dichotomize.ado
@@ -27,6 +28,7 @@ f p/purge.ado
 f p/purge.sthlp
 f r/reshape2l.ado
 f r/reshape2l.sthlp
+F r/test.do
 f s/stpiece2.ado
 f s/stpiece2.sthlp
 f u/uniqueby.ado
