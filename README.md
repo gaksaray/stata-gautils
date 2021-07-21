@@ -33,7 +33,7 @@ and to update:
 ado update gautils, update
 ```
 
-To see how a command works, type `help [command]` within Stata to view `.sthlp`
-file. For commands with no help files, you can type `which [command]` as I tend
-to include a short explanation of the command along with its syntax and several
-examples at the top of `.ado` files.
+To see the list of all commands in `gautils` package after installation, type `help gautils`.
+To see how a specific command works, type `help [command]` within Stata to view `.sthlp` file.
+For commands with no help files, you can type `which [command]` as I tend to include a short
+explanation of the command along with its syntax and several examples at the top of `.ado` files.
