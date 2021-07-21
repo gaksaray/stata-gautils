@@ -6,7 +6,7 @@ several of my projects.
 ## Installation
 
 You may install individual packages or the whole repository from within Stata.
-Use the following command to set your current net location:
+First, use the following command to set your current net location:
 ```stata
 net from "https://raw.github.com/gaksaray/stata-gautils/master"
 ```
@@ -28,8 +28,12 @@ To install all packages directly within Stata, use the following command:
 capture ado uninstall gautils
 net install gautils, from("https://raw.github.com/gaksaray/stata-gautils/master")
 ```
+and to update:
+```stata
+ado update gautils, update
+```
 
 To see how a command works, type `help [command]` within Stata to view `.sthlp`
 file. For commands with no help files, you can type `which [command]` as I tend
-to include a short explanation of the command along with several examples at the
-top of `.ado` files.
+to include a short explanation of the command along with its syntax and several
+examples at the top of `.ado` files.
