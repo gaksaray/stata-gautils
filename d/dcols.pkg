@@ -1,0 +1,14 @@
+v 3
+d 'DCOLS': module to return dcolumn and %fmt formatting from matrices
+d in stored estimates
+d
+d {cmd:dcols} returns dcolumn and %fmt specifications to be used along with estout
+d package for producing LaTeX tables. It is used to produce pretty tables with
+d dcolumn LaTeX package.
+d
+d Distribution-Date: 20210728
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f dcols.ado

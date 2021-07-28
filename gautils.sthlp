@@ -18,6 +18,12 @@
 {stata which clearlab:clearlab}: module to clear all labels and notes
 
 {phang}
+{stata which dcolmat:dcolmat}: module to return maximum number of integer digits of numeric matrices
+
+{phang}
+{stata which dcols:dcols}: module to return dcolumn and %fmt formatting from matrices in stored estimates
+
+{phang}
 {help dichotomize}: module to dichotomize a numeric variable
 
 {phang}

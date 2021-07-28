@@ -1,0 +1,13 @@
+v 3
+d 'DCOLMAT': module to return maximum number of integer digits of
+d numeric matrices
+d
+d {cmd:dcolmat} returns maximum number of integer digits of numeric matrices
+d with optional comma separators and negative sign.
+d
+d Distribution-Date: 20210728
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f dcolmat.ado

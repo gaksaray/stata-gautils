@@ -1,4 +1,6 @@
 v 3
 d D-directory
 
+p dcolmat module to return maximum number of integer digits of numeric matrices
+d dcols module to return dcolumn and %fmt formatting from matrices in stored estimates
 p dichotomize module to dichotomize a numeric variable
