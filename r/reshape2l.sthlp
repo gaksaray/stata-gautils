@@ -5,7 +5,7 @@
 {viewerjumpto "Options" "reshape2l##options"}{...}
 {viewerjumpto "Examples" "reshape2l##examples"}{...}
 {viewerjumpto "Author" "reshape2l##author"}{...}
-{cmd:help reshape2l}{right: {browse "https://github.com/gaksaray/stata-reshape2l/"}}
+{cmd:help reshape2l}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 
 {title:Title}
