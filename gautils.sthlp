@@ -45,6 +45,9 @@
 {stata which hspace:hspace}: module to add LaTeX horizontal spaces to variable and value labels
 
 {phang}
+{stata which labado:labado}: module to save variable labels as an ado program
+
+{phang}
 {help maxvarlen}: module to calculate maximum character length of list of variables
 
 {phang}

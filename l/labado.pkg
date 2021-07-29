@@ -1,0 +1,16 @@
+v 3
+d 'LABADO': module to save variable labels as an ado program
+
+d {cmd:labado} saves variable labels by creating an ado program that returns the
+d list of saved labels. It is sometimes useful to save variable labels from a
+d dataset into a program, run some regressions and save the estimates, and then
+d use the saved program in tandem with {cmd:estout} to produce nicely labelled
+d tables out of saved estimates without loading the original dataset including
+d the variable labels.
+d
+d Distribution-Date: 20210729
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f labado.ado
