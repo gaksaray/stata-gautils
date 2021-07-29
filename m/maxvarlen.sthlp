@@ -5,7 +5,7 @@
 {viewerjumpto "Stored results" "maxvarlen##results"}{...}
 {viewerjumpto "Examples" "maxvarlen##examples"}{...}
 {viewerjumpto "Author" "maxvarlen##author"}{...}
-{cmd:help maxvarlen}{right: {browse "https://github.com/gaksaray/stata-gautil/"}}
+{cmd:help maxvarlen}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 
 {title:Title}
