@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.3.1  13jul2021}{...}
+{* *! version 1.4  02aug2021}{...}
 {hi:help grpvars}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 
@@ -27,7 +27,7 @@
 {help grpvars##option_table:{it:refcat_options}}]
 
 {p 8 16 2}
-{cmd: grpvars list}|{cmd:drop}
+{cmd: grpvars list}|{cmd:drop|keep}
 [{cmd:,} {opt name(grpname)}]
 
 {p 8 16 2}
@@ -91,9 +91,13 @@ if a sequence of variables are to be replaced.
 all variable groups.
 
 {pstd}
-{cmd:grpvars drop} drop the group specified by the {opt:name} option. If
+{cmd:grpvars drop} drop the group specified by the {opt name} option. If
 {opt name} option is omitted, it drops all groups, i.e., triggers
 {cmd:grpvars clear} command.
+
+{pstd}
+{cmd:grpvars keep} keeps the group specified by the {opt name} option and
+drops the rest of the groups.
 
 {pstd}
 {cmd:grpvars clear} drop all groups from memory.
