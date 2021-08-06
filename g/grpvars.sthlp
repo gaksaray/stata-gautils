@@ -27,7 +27,7 @@
 {help grpvars##option_table:{it:refcat_options}}]
 
 {p 8 16 2}
-{cmd: grpvars list}|{cmd:drop|keep}
+{cmd:grpvars list}|{cmd:drop}|{cmd:keep}
 [{cmd:,} {opt name(grpname)}]
 
 {p 8 16 2}
