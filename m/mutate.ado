@@ -1,4 +1,4 @@
-*! version 1.0  10jul2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.1  16aug2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *! Add new variables that are functions of existing variables
 *!
 *! Syntax
@@ -94,7 +94,12 @@ program define _mutateSq
         exit 198
     }
     else {
-        local lastscale = word("`scale'", `scalecount')
+        if "`scale'" != "" {
+            local lastscale = word("`scale'", `scalecount')
+        }
+        else {
+            local lastscale "`def_scale'" // default value if opt not specified
+        }
     }
     
     local i = 0
@@ -134,23 +139,33 @@ program define _mutateLn
     local preaddcount = wordcount("`preadd'")
     local premultiplycount = wordcount("`premultiply'")
     if `preaddcount' > `varcount' {
-    	di as err "too many nums in preadd()"
+        di as err "too many nums in preadd()"
         exit 198
     }
     else {
-    	local lastpreadd = word("`preadd'", `preaddcount')
+        if "`preadd'" != "" {
+            local lastpreadd = word("`preadd'", `preaddcount')
+        }
+        else {
+            local lastpreadd "`def_preadd'" // default val if opt not specified
+        }
     }
     if `premultiplycount' > `varcount' {
         di as err "too many nums in premultiply()"
         exit 198
     }
     else {
-        local lastpremultiply = word("`premultiply'", `premultiplycount')
+        if "`premultiply'" != "" {
+            local lastpremultiply = word("`premultiply'", `premultiplycount')
+        }
+        else {
+            local lastpremultiply "`def_premultiply'" // default val if opt not specified
+        }
     }
     
     local i = 0
     foreach var of varlist `varlist' {
-    	local ++i
+        local ++i
         
         foreach fnopt in preadd premultiply {
             local `fnopt'_i = word("``fnopt''", `i')

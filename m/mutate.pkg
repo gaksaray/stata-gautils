@@ -12,7 +12,7 @@ d 10^x, where x can be specified differently for each variable. You can do that
 d too in one line with {cmd:mutate}. Type {inp:which mutate} in Stata after
 d downloading the module to see its syntax and a few examples.
 d
-d Distribution-Date: 20210710
+d Distribution-Date: 20210816
 d
 d Author: Gorkem Aksaray, Koc University
 d Support: gaksaray@ku.edu.tr
