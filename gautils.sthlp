@@ -36,6 +36,9 @@
 {stata which estcorr:estcorr}: module to post correlations in sequential manner
 
 {phang}
+{stata which fmtnum:fmtnum}: module to reformat numeric variables
+
+{phang}
 {stata which fmtstr:fmtstr}: module to reformat string variables
 
 {phang}
