@@ -1,4 +1,4 @@
-*! version 1.1  16aug2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.2  30nov2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *! Add new variables that are functions of existing variables
 *!
 *! Syntax
@@ -26,7 +26,7 @@
 *!   Function options can take as many numbers as the number of variables in
 *!   varlist. For example, if there are 4 variables to mutate sq, you can
 *!   specify scale(2 . 3), in which case the first squared term will be scaled
-*!   by 10^2, the second squared term will be scaled by 10^1=1 (default), and
+*!   by 10^2, the second squared term will be scaled by 10^0=1 (default), and
 *!   the rest of the squared terms will be scaled by 10^3.
 *!
 *! Examples
@@ -38,6 +38,16 @@
 *!   mutate ln  `mutated_variables', preadd(250.5 1 .) premultiply(. . 10)
 *!   mutate log `mutated_variables', preadd(250.5 1 .) premultiply(. . 10)
 *!   mutate exp `mutated_variables'
+*!
+*! Changelog
+*! ---------
+*!   [1.2]
+*!     Simplified mutate sq labelling when scale is 0 or 1.
+*!     Simplified mutate ln labelling when preadd is 0 or premultiply is 1.
+*!   [1.1]
+*!     Using mutate without any option was causing error. This is now fixed.
+*!   [1.0]
+*!     Initial release.
 
 capture program drop mutate
 program mutate
@@ -84,7 +94,7 @@ capture program drop _mutateSq
 program define _mutateSq
     syntax varlist [, scale(numlist int miss min=1 >0)]
     
-    // set defaults
+    // set parameter defaults
     local def_scale = 0
     
     local varcount = wordcount("`varlist'")
@@ -107,11 +117,26 @@ program define _mutateSq
         local ++i
         
         local scale_i = word("`scale'", `i')
-        if "`scale_i'" == "" local scale_i "`lastscale'"
-        else if "`scale_i'" == "." local scale_i = `def_scale'
+        if "`scale_i'" == "" {
+            local scale_i "`lastscale'"
+        }
+        else if "`scale_i'" == "." {
+            local scale_i = `def_scale'
+        }
         
         generate `var'sq = `var'^2 / 10^`scale_i', after(`var')
-        label var `var'sq "`var'^2 / 10^`scale_i'"
+        
+        local lbl_scale_i
+        if `scale_i' == 0 {
+            local lbl_scale_i
+        }
+        else if `scale_i' == 1 {
+            local lbl_scale_i " / 10"
+        }
+        else if `scale_i' > 1 {
+            local lbl_scale_i " / 10^`scale_i'"
+        }
+        label var `var'sq "`var'^2`lbl_scale_i'"
     }
 end
 
@@ -131,7 +156,7 @@ program define _mutateLn
     local fn "`1'"
     local varlist "`0'"
     
-    // set defaults
+    // set parameter defaults
     local def_preadd = 0
     local def_premultiply = 1
     
@@ -169,12 +194,25 @@ program define _mutateLn
         
         foreach fnopt in preadd premultiply {
             local `fnopt'_i = word("``fnopt''", `i')
-            if "``fnopt'_i'" == "" local `fnopt'_i "`last`fnopt''"
-            if "``fnopt'_i'" == "." local `fnopt'_i = `def_`fnopt''
+            if "``fnopt'_i'" == "" {
+                local `fnopt'_i "`last`fnopt''"
+            }
+            if "``fnopt'_i'" == "." {
+                local `fnopt'_i = `def_`fnopt''
+            }
         }
         
         generate `fn'`var' = ln((`var' * `premultiply_i') + `preadd_i'), after(`var')
-        label var `fn'`var' "`fn'(`var'*`premultiply_i' + `preadd_i')"
+        
+        local lbl_preadd_i
+        local lbl_premultiply_i
+        if `preadd_i' != 0 {
+            local lbl_preadd_i " + `preadd_i'"
+        }
+        if `premultiply_i' != 1 {
+            local lbl_premultiply_i "*`premultiply_i'"
+        }
+        label var `fn'`var' "`fn'(`var'`lbl_premultiply_i'`lbl_preadd_i')"
     }
 end
 
