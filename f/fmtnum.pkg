@@ -4,7 +4,7 @@ d
 d {cmd:fmtstr} sets the display format associated with the numeric variables
 d specified to their default values according to their type.
 d
-d Distribution-Date: 20210820
+d Distribution-Date: 20211203
 d
 d Author: Gorkem Aksaray, Koc University
 d Support: gaksaray@ku.edu.tr
