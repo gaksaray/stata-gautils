@@ -1,8 +1,14 @@
-*! version 1.4.0  02aug2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.4.1  23dec2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *!
-*! History
-*! -------
-*!   [1.4.0] Added 'keep' subcommand.
+*! Changelog
+*! ---------
+*!   [1.4.1]
+*!     - Fixed a bug in which title() option was not working when a group is
+*!       already defined as a global macro (e.g., by vl command). grpvars now
+*!       checks explicitly whether $refcat includes the first variable of a
+*!       group before deciding whether to add the title into $refcat or not.
+*!   [1.4.0]
+*!     - Added 'keep' subcommand.
 
 capture program drop grpvars
 program grpvars
@@ -156,7 +162,7 @@ program grpvars
             global refcat = trim(stritrim(regexr(`"$refcat"', `"`prefirstvar_`group'' ["][^"]+["]"', "")))
         }
         
-        * if post-edit group if not empty;
+        * if post-edit group is not empty;
         else if `postvarcount' > 0 {
             
             // add group to group list
@@ -181,8 +187,8 @@ program grpvars
                 
                 * if existing group;
                 if "`prefirstvar_`group''" != "" {
-                    if `"$refcat"' != "" {
-                        local refcat = regexr(`"$refcat"', `"`prefirstvar_`group'' ["][^"]+["]"', `"`reftitle'"')
+                    if `"$refcat"' != "" & regexm(`"$refcat"', `"(`prefirstvar_`group'' ["][^"]+["])"') == 1 {
+                        local refcat = regexr(`"$refcat"', regexs(1), `"`reftitle'"')
                     }
                     else {
                         local refcat $refcat `reftitle'
