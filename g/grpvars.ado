@@ -1,7 +1,10 @@
-*! version 1.4.1  23dec2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.5  24dec2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *!
 *! Changelog
 *! ---------
+*!   [1.5]
+*!     - Added 'vl' subcommand.
+*!     - 'dir' subcommand now returns the list and number of variable groups.
 *!   [1.4.1]
 *!     - Fixed a bug in which title() option was not working when a group is
 *!       already defined as a global macro (e.g., by vl command). grpvars now
@@ -35,7 +38,8 @@ program grpvars
                     "drop",
                     "keep",
                     "clear",
-                    "dir"
+                    "dir",
+                    "vl"
                     "'
     ;
     #delimit cr
@@ -53,6 +57,50 @@ program grpvars
         exit 100
     }
     local Fn = strproper("`fn'")
+    
+    // vl subcommand
+    if "`fn'" == "vl" {
+        if "`varlist'" != "" {
+            no di as err "varlist not allowed"
+            exit 101
+        }
+        if "`name'" != "" {
+            noi di as err "option {bf:name} not allowed"
+            exit 198
+        }
+        if "`title'" != "" {
+            noi di as err "option {bf:title} not allowed"
+            exit 198
+        }
+        if `"`_dta[_vlusernames_desc]'"' == "" {
+            noi di as err "no {bf:vl} titles found"
+            exit 198
+        }
+        qui vl dir
+        foreach vlusername in `r(vlusernames)' {
+            if strpos(`"`_dta[_vlusernames_desc]'"', "`vlusername'") == 0 {
+                local vlvars "${`vlusername'}"
+                cap grpvars drop, name(`vlusername')
+                grpvars `vlvars', name(`vlusername')
+                continue
+            }
+            tokenize `"`_dta[_vlusernames_desc]'"'
+            while "`1'" != "" {
+                local vlname "`1'"
+                local vldesc "`2'"
+                local vlvars "${`vlname'}"
+                if "`vlusername'" == "`vlname'" {
+                    cap grpvars drop, name(`vlname')
+                    grpvars `vlvars', name(`vlname') title("`vldesc'") ///
+                                      p(`prefix') s(`suffix')          ///
+                                      `latex' `tex' `html'             ///
+                                      `italic' `bold' em(`emspace')
+                }
+                macro shift 2
+            }
+            exit
+        }
+    }
     
     // open group(s)
     if "`name'" != "" {
@@ -386,7 +434,7 @@ program _groupClear
 end
 
 capture program drop _groupDir
-program _groupDir
+program _groupDir, rclass
     
     if "$vargroups" != "" {
         macro list vargroups
@@ -394,6 +442,9 @@ program _groupDir
     if `"$refcat"' != "" {
         macro list refcat
     }
+    
+    return local vargroups "$vargroups"
+    return scalar n_vargroups = wordcount("$vargroups")
 end
 
 capture program drop _checkifGroupExists

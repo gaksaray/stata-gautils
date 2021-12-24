@@ -13,7 +13,7 @@ d table. This enables one to more easily narrate the variable selection process.
 d {cmd:grpvars} also maintains $refcat global macro if {opt title} option is
 d specified, to be used in {help estout##refcat:estout}.
 d
-d Distribution-Date: 20211223
+d Distribution-Date: 20211224
 d
 d Author: Gorkem Aksaray, Koc University
 d Support: gaksaray@ku.edu.tr

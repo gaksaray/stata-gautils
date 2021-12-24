@@ -36,6 +36,10 @@
 {p 8 16 2}
 {cmd: grpvars clear}
 
+{p 8 16 2}
+{cmd: grpvars vl}
+[{cmd:,} {help grpvars##option_table:{it:refcat_options}} {it:excluding} {opt title}]
+
 
 {marker option_table}{...}
 {synoptset 16 tabbed}{...}
@@ -100,7 +104,17 @@ all variable groups.
 drops the rest of the groups.
 
 {pstd}
-{cmd:grpvars clear} drop all groups from memory.
+{cmd:grpvars clear} drops all groups from memory.
+
+{pstd}
+{cmd:grpvars vl} picks up all user-defined variable lists saved by the
+{help vl} command as variable groups.
+It clears all previously saved variable groups,
+goes through each variable list defined by {cmd:vl},
+saves their labels as titles (defined by {help vl label}),
+and reformats all titles according to {it:refcat_options}.
+Needless to say, {cmd:vl set} or {cmd:vl rebuild} must be run before running
+{cmd: grpvars vl}, and the user-defined variable lists must be labeled.
 
 
 {marker options}{...}
@@ -200,6 +214,20 @@ groups, {cmd:weight} and {cmd:length} would have been added to all of them.
         {txt}refcat:{space 9}{res}{res}rep78 "Main variables" headroom "\hspace{c -(}5em{c )-}\textbf{c -(}\textit{c -(}Controls{c )-}{c )-}"
         {txt}
 
+{pstd}Using {opt vl} subcommand after {help vl}{p_end}
+
+        {com}. grpvars drop, name(x_inter)
+        {com}. vl create x_other = (gear_ratio displacement)
+        {txt}note: {bf:$x_other} initialized with 2 variables.{txt}
+        
+        {com}. vl label x_other "Other controls"
+        {com}. grpvars vl, tex italic
+        {txt}x_other:{space 8}{res}{res}gear_ratio displacement
+        
+        {com}. grpvars dir
+        {txt}vargroups:{space 6}{res}{res}x_main x_other{txt}
+        {txt}refcat:{space 9}{res}{res}rep78 "Main variables" gear_ratio "\textit{Other controls}"{txt}
+
 
 {marker results}{...}
 {title:Returned results}
@@ -212,8 +240,13 @@ option was set.
 
 {pstd}
 {cmd:grpvars list, name()} returns {cmd:r(varlist)} macro containing the collection
-of variables in variable groups specified by {opt name()}, and {cmd:r(k)} which is
-the number of variables in this list.
+of variables in variable groups specified by {opt name()}, and {cmd:r(k)} scalar
+containing the number of variables in this list.
+
+{pstd}
+{cmd:grpvars dir} returns {cmd:r(vargroups)} macro containing the list of names
+of variable groups, and {cmd:r(n_vargroups)} scalar containing the number of
+variable groups in memory.
 
 
 {marker author}{...}
