@@ -1,0 +1,11 @@
+v 3
+d 'FRAPPEND': module to append frame(s) onto current frame
+d
+d {cmd:frappend} appends specified frames onto current frame.
+d
+d Distribution-Date: 20220106
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f frappend.ado

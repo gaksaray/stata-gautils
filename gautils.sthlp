@@ -42,6 +42,9 @@
 {stata which fmtstr:fmtstr}: module to reformat string variables
 
 {phang}
+{stata which frappend:frappend}: module to append frame(s) onto current frame
+
+{phang}
 {help grpvars}: module to create and manage variable groups
 
 {phang}
