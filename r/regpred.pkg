@@ -1,0 +1,12 @@
+v 3
+d 'REGPRED': module to save predicted values of an estimation model
+d
+d {cmd:regpred} saves predicted values of an estimation model by group.
+d
+d Distribution-Date: 20220112
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f regpred.ado
+f regpred.sthlp

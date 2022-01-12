@@ -63,6 +63,9 @@
 {help purge}: module to purge (reduce) Stata memory while preserving the dataset
 
 {phang}
+{stata which regpred:regpred}: module to save predicted values of an estimation model
+
+{phang}
 {help reshape2l}: module to quickly convert data from wide to long form
 
 {phang}
