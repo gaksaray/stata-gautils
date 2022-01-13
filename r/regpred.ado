@@ -1,4 +1,4 @@
-*! version 1.0  12jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.1  13jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *! 
 *! Syntax
 *! ------
@@ -30,11 +30,14 @@
 *! 
 *! Changelog
 *! ---------
+*!   [1.1]
+*!     Bug fix: insufficient observation in estimation command.
 *!   [1.0]
 *!     Initial release.
 
 capture program drop regpred
 program define regpred, byable(recall, noheader) sortpreserve
+    version 16
     syntax, command(string asis) GENerate(name) [at(string)]
     marksample touse
     
@@ -48,6 +51,8 @@ program define regpred, byable(recall, noheader) sortpreserve
         confirm number `3'
     }
     
+    local cframe "`c(frame)'"
+    
     if _byindex() == 1 {
         confirm new variable `generate'
         qui generate `generate' = .
@@ -57,14 +62,17 @@ program define regpred, byable(recall, noheader) sortpreserve
     gen `index' = _n
     
     quietly {
-        local cframe "`c(frame)'"
         tempname frtouse
-        
         frame put if `touse', into(`frtouse')
         cwf `frtouse'
         
         keep if `touse'
-        `command'
+        cap `command'
+        if _rc == 2001 {
+            cwf `cframe'
+            di "insufficient observations"
+            exit 2001
+        }
         tempname est
         gen `est' = cond(e(sample), 1, 0)
         if "`at'" != "" {
@@ -79,6 +87,5 @@ program define regpred, byable(recall, noheader) sortpreserve
         frget `yhat' = `yhat', from(`frtouse')
         replace `generate' = `yhat' if `touse' & `est'
         drop `frtouse' `est'
-        frame drop `frtouse'
     }
 end
