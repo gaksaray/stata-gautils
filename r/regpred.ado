@@ -1,4 +1,4 @@
-*! version 1.1  13jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.2  14jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *! 
 *! Syntax
 *! ------
@@ -30,6 +30,8 @@
 *! 
 *! Changelog
 *! ---------
+*!   [1.2]
+*!     Bug fix: no observations in estimation command.
 *!   [1.1]
 *!     Bug fix: insufficient observation in estimation command.
 *!   [1.0]
@@ -41,19 +43,20 @@ program define regpred, byable(recall, noheader) sortpreserve
     syntax, command(string asis) GENerate(name) [at(string)]
     marksample touse
     
-    if "`at'" != "" {
-        tokenize "`at'", parse(=)
-        confirm numeric variable `1'
-        if "`2'" != "=" {
-            di as err "option at incorrectly specified"
-            exit 198
-        }
-        confirm number `3'
-    }
-    
     local cframe "`c(frame)'"
     
     if _byindex() == 1 {
+        
+        if "`at'" != "" {
+            tokenize "`at'", parse(=)
+            confirm numeric variable `1'
+            if "`2'" != "=" {
+                di as err "option at incorrectly specified"
+                exit 198
+            }
+            confirm number `3'
+        }
+        
         confirm new variable `generate'
         qui generate `generate' = .
     }
@@ -68,8 +71,12 @@ program define regpred, byable(recall, noheader) sortpreserve
         
         keep if `touse'
         cap `command'
+        if _rc != 0 cwf `cframe'
+        if _rc == 2000 {
+            di "no observations"
+            exit 2000
+        }
         if _rc == 2001 {
-            cwf `cframe'
             di "insufficient observations"
             exit 2001
         }
