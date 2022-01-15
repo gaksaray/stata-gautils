@@ -20,6 +20,7 @@
 
 capture program drop frput
 program frput
+    version 16
     syntax [varlist] [if] [in], into(name local) [replace]
 
     tempname tmpframe
