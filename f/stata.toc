@@ -5,3 +5,4 @@ d Gorkem Aksaray, gaksaray@ku.edu.tr
 p fmtstr module to reformat string variables
 p fmtnum module to reformat numeric variables
 p frappend module to append frame(s) onto current frame
+p frput module to put subset of current frame into another frame

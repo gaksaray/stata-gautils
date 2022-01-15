@@ -45,6 +45,9 @@
 {stata which frappend:frappend}: module to append frame(s) onto current frame
 
 {phang}
+{stata which frput:frput}: module to put subset of current frame into another frame
+
+{phang}
 {help grpvars}: module to create and manage variable groups
 
 {phang}

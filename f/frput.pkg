@@ -1,0 +1,13 @@
+v 3
+d 'FRPUT': module to put subset of current frame into another frame
+d
+d {cmd:frput} copies selected variables or observations to another
+d frame with an option to replace the specified frame. It is essentially
+d a wrapper for frame put command.
+d
+d Distribution-Date: 20220115
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f frput.ado
