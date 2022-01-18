@@ -5,5 +5,5 @@ d Gorkem Aksaray, gaksaray@ku.edu.tr
 p fmtstr module to reformat string variables
 p fmtnum module to reformat numeric variables
 p frappend module to append frame(s) onto current frame
-p frapply module to non-destructively apply a command to any frame and put the result into another frame
+p frapply module to non-destructively apply command(s) to a frame and put the result into another frame
 p frput module to put subset of current frame into another frame

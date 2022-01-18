@@ -1,13 +1,14 @@
 v 3
-d 'FRAPPLY': module to non-destructively apply a command to any frame and put the result into another frame
+d 'FRAPPLY': module to non-destructively apply command(s) to a frame and put the result into another frame
 d
-d {cmd:frapply} is for running commands that would normally be destructive
-d (such as drop/keep, collapse, contract etc.) on a dataset while preserving
-d it but instead posting the end result into another frame. This is especially
-d useful in interactive/experimental settings where we want to quickly examine
-d summarized or subset data without changing the actual dataset.
+d {cmd:frapply} applies a command or a series of commands to the dataset in the
+d current frame while preserving it, and puts the end result into another
+d frame. Any otherwise destructive commands such as drop/keep, collapse,
+d contract etc. can be run without changing the current dataset. This can
+d be particularly useful in interactive/experimental settings where we want
+d to quickly summarize and/or subset the data without changing it.
 d
-d Distribution-Date: 20220116
+d Distribution-Date: 20220118
 d
 d Author: Gorkem Aksaray, Koc University
 d Support: gaksaray@ku.edu.tr
