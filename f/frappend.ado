@@ -1,9 +1,8 @@
-*! version 1.0  06jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.1  20jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *! Append frame(s) onto current frame
 *!
 *! Syntax
 *! ------
-*!
 *!   frappend frame_list
 *!
 *! Description
@@ -26,19 +25,22 @@
 *!
 *! Changelog
 *! ---------
+*!   [1.1]
+*!     Bug fix: skip input frame when it's the same as current frame.
+*!     Changed version requirement to Stata 16.
 *!   [1.0]
 *!     Initial release.
 
 capture program drop frappend
 program define frappend
-version 17
+    version 16
     syntax namelist(name=frlist id="frame list")
     
     foreach fr of local frlist {
         confirm frame `fr'
         
-        // store starting frame
-        local curframe = c(frame)
+        // skip if starting frame = input frame
+        if "`=c(frame)'" == "`fr'" continue
         
         // save input frame as tempfile
         frame `fr' {
