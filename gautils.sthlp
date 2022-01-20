@@ -48,6 +48,9 @@
 {stata which frapply:frapply}: module to non-destructively apply command(s) to a frame and put the result into another frame
 
 {phang}
+{stata which frmerge:frmerge}: module to merge a target frame with current frame
+
+{phang}
 {stata which frput:frput}: module to put subset of current frame into another frame
 
 {phang}
