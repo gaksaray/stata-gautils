@@ -1,7 +1,7 @@
 v 3
 d 'PURGE': module to purge (reduce) Stata memory while preserving the dataset
 d
-d Purge (reduce) Stata memory while preserving the dataset.
+d {cmd:purge} (reduce) Stata memory while preserving the dataset.
 d
 d Distribution-Date: 20210207
 d
