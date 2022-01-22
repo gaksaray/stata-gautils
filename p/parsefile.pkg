@@ -1,0 +1,12 @@
+v 3
+d 'PARSEFILE': module to parse file name from the using modifier
+d
+d {cmd:parsefile} parses the file name from the using modifier.
+d
+d Distribution-Date: 20220122
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f parsefile.ado
+f parsefile.do

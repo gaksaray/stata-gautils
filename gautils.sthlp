@@ -69,6 +69,9 @@
 {stata which mutate:mutate}: module to add new variables that are functions of existing variables
 
 {phang}
+{stata which parsefile:parsefile}: module to parse file name from the using modifier
+
+{phang}
 {help purge}: module to purge (reduce) Stata memory while preserving the dataset
 
 {phang}

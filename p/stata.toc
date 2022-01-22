@@ -1,4 +1,5 @@
 v 3
 d P-directory
 
+p parsefile module to parse file name from the using modifier
 p purge module to purge (reduce) Stata memory while preserving the dataset

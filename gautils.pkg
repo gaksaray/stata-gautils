@@ -32,6 +32,8 @@ f l/labado.ado
 f m/maxvarlen.ado
 f m/maxvarlen.sthlp
 f m/mutate.ado
+f p/parsefile.ado
+f p/parsefile.do
 f p/purge.ado
 f p/purge.sthlp
 f r/regpred.ado
