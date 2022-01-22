@@ -45,7 +45,7 @@
 {stata which frappend:frappend}: module to append frame(s) onto current frame
 
 {phang}
-{stata which frapply:frapply}: module to non-destructively apply command(s) to a frame and put the result into another frame
+{help frapply}: module to non-destructively apply command(s) to a frame
 
 {phang}
 {stata which frmerge:frmerge}: module to merge a target frame with current frame

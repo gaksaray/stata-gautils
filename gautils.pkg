@@ -23,6 +23,7 @@ f f/fmtnum.ado
 f f/fmtstr.ado
 f f/frappend.ado
 f f/frapply.ado
+f f/frapply.sthlp
 f f/frmerge.ado
 f f/frput.ado
 f g/grpvars.ado
