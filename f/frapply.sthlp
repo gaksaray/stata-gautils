@@ -55,13 +55,13 @@ However, {cmd:frame:} prefix is not recommended to use with {cmd:frapply} not on
 {title:Description}
 
 {pstd}
-{cmd:frapply} applies a command or a series of commands to the dataset in the specified (or current) frame while preserving it, and puts the end result into another frame.
-Commands that are otherwise destructive (such as {help drop}, {help keep}, {help collapse}, {help contract} etc.) can be run serially without changing the dataset.
-This can be particularly useful in interactive/experimental settings where we want to quickly summarize and/or subset the data without changing it.
+{cmd:frapply} applies a command or a series of commands to the dataset in the specified (or current) and puts the end result into another frame.
+Commands that are otherwise destructive (such as {help drop}, {help keep}, {help collapse}, {help contract} etc.) can be run serially while preserving the dataset.
+This can be particularly useful in interactive/experimental settings where we want to quickly and iteratively summarize and/or transform the data without actually changing it.
 
 {pstd}
-{cmd:frapply} is also a convenient substitute for {help frames} commands such as {help frame copy} and {help frame put}.
-It can do everything any of those commands can do and more in a flexible fashion.
+{cmd:frapply} is also a convenient drop-in replacement for the {help frames_prefix:frames prefix} and a substitute for {help frames} commands such as {help frame copy} and {help frame put}.
+It can do anything those commands can do and more in a flexible fashion.
 
 
 {marker options}{...}
