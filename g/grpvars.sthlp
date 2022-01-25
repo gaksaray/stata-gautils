@@ -1,5 +1,11 @@
 {smcl}
-{* *! version 1.4  02aug2021}{...}
+{* version 1.5  24dec2021  Gorkem Aksaray <gaksaray@ku.edu.tr>}{...}
+{viewerjumpto "Syntax" "grpvars##syntax"}{...}
+{viewerjumpto "Description" "grpvars##description"}{...}
+{viewerjumpto "Options" "grpvars##options"}{...}
+{viewerjumpto "Examples" "grpvars##examples"}{...}
+{viewerjumpto "Stored results" "grpvars##results"}{...}
+{viewerjumpto "Author" "grpvars##author"}{...}
 {hi:help grpvars}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 
@@ -75,14 +81,11 @@ table. This enables one to more easily narrate the variable selection process.
 specified, to be used in {help estout##refcat:estout}.
 
 {pstd}
-{cmd:grpvars} by itself creates (or rewrites) a variable group. {opt name}
+{cmd:grpvars} by itself creates (or overwrites to) a variable group. {opt name}
 option is required.
 
 {pstd}
-{cmd:grpvars add}|{cmd:remove} adds or removes a certain variable(s) to|from a
-variable group specified by the {opt name} option. If {opt name} option is not
-specified, {cmd:grpvars} tries to add or remove the variable(s) in question
-from all defined groups.
+{cmd:grpvars add}|{cmd:remove} adds or removes {it:varlist} to/from the variable group specified by the {opt name} option (or all groups if {opt name} is not specified).
 
 {pstd}
 {cmd:grpvars replace} replaces either a variable, or a sequence of multiple
@@ -230,7 +233,7 @@ groups, {cmd:weight} and {cmd:length} would have been added to all of them.
 
 
 {marker results}{...}
-{title:Returned results}
+{title:Stored results}
 
 {pstd}
 {cmd:grpvars} maintains two global macros, in addition to those created for
