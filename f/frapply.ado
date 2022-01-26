@@ -1,4 +1,4 @@
-*! version 3.0  23jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0  26jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *!
 *! Syntax
 *! ------
@@ -13,17 +13,8 @@
 *!
 *! Changelog
 *! ---------
-*!   [3.0]
-*!     Yet another syntax redesign. frapply is now a prefix.
-*!     into() is now optional. quietly option added.
-*!     Removed frput dependency by including it as a subcommand. frput command
-*!     is now redundant as frapply can do what frput can do and more.
-*!   [2.0]
-*!     Changes in syntax: (1) framename1 argument for specifying applied frame
-*!     directly, and (2) replace and newly added change options are now within
-*!     into() option.
 *!   [1.0]
-*!     Initial release.
+*!     - Initial SSC release.
 
 capture program drop frapply
 program define frapply

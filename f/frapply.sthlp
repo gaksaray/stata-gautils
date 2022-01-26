@@ -1,10 +1,11 @@
 {smcl}
-{* version 3.0  23jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>}
+{* version 1.0  26jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>}
 {viewerjumpto "Syntax" "frapply##syntax"}{...}
 {viewerjumpto "Description" "frapply##description"}{...}
 {viewerjumpto "Options" "frapply##options"}{...}
 {viewerjumpto "Stored results" "frapply##results"}{...}
 {viewerjumpto "Examples" "frapply##examples"}{...}
+{viewerjumpto "Remarks" "frapply##remarks"}{...}
 {viewerjumpto "Author" "frapply##author"}{...}
 {cmd:help frapply}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
@@ -12,7 +13,7 @@
 {title:Title}
 
 {phang}
-{bf:frapply} {hline 2} Non-destructively apply command(s) to a frame
+{bf:frapply} {hline 2} Nondestructively apply command(s) to a frame
 
 
 {marker syntax}{...}
@@ -55,13 +56,13 @@ However, {cmd:frame:} prefix is not recommended to use with {cmd:frapply} not on
 {title:Description}
 
 {pstd}
-{cmd:frapply} applies a command or a series of commands to the dataset in the specified (or current) and puts the end result into another frame.
+{cmd:frapply} applies a command or a series of commands to the dataset in the specified (or current) frame and optionally puts the result into another frame.
 Commands that are otherwise destructive (such as {help drop}, {help keep}, {help collapse}, {help contract} etc.) can be run serially while preserving the dataset.
-This can be particularly useful in interactive/experimental settings where we want to quickly and iteratively summarize and/or transform the data without actually changing it.
+This can be particularly useful in interactive and experimental settings where we want to quickly and iteratively summarize and/or transform the data without changing it.
 
 {pstd}
-{cmd:frapply} is also a convenient drop-in replacement for the {help frames_prefix:frames prefix} and a substitute for {help frames} commands such as {help frame copy} and {help frame put}.
-It can do anything those commands can do and more in a flexible fashion.
+{cmd:frapply} can also be a convenient drop-in replacement for the {help frames_prefix:frames prefix} and a substitute for {help frames} commands such as {help frame copy} and {help frame put}.
+It can do everything those commands can do in a more flexible fashion.
 
 
 {marker options}{...}
@@ -120,8 +121,8 @@ Displaying predictive margins
 {phang}{input:. frapply, qui: reg price mpg || predict yhat || collapse yhat || noi l}{p_end}
 
 
-{marker Remark}{...}
-{title:Remark}
+{marker remarks}{...}
+{title:Remarks}
 
 {pstd}
 One seeming limitation of using daisy-chained {it:commandlist} is that macros produced by a command may not be an input of a subsequent command.
