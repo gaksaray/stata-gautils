@@ -1,5 +1,5 @@
 {smcl}
-{* version 1.0  07feb2021}{...}
+{* version 1.1  02feb2022  Gorkem Aksaray <gaksaray@ku.edu.tr>}{...}
 {viewerjumpto "Syntax" "uniqueby##syntax"}{...}
 {viewerjumpto "Description" "uniqueby##description"}{...}
 {viewerjumpto "Options" "uniqueby##options"}{...}
@@ -57,7 +57,7 @@ specifed in {opt by(varname)}.
 {synopt:{cmd:r(N)}}number of observations{p_end}
 {synopt:{cmd:r(r)}}number of distinct values{p_end}
 
-{p2col 7 15 19 2: and if {opt by(varname)} is specified...}{p_end}
+{p2col 7 15 19 2: and if {opt by(varname)} is specified and all groups are integer numeric...}{p_end}
 {synopt:{cmd:r(N}_{it:group#}{cmd:)}  }number of observations in group #{p_end}
 {synopt:{cmd:r(r}_{it:group#}{cmd:)}  }number of distinct values in group #{p_end}
 {p2colreset}{...}
