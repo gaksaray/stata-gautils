@@ -1,4 +1,4 @@
-*! version 1.1  21jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.2  13feb2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *! Merge a target frame with current frame
 *!
 *! Syntax
@@ -59,7 +59,7 @@ program frmerge
     confirm frame `frame2'
     
     gettoken n _varlist1: varlist1
-    if ("`n'" == "_n") {
+    if "`n'" == "_n" {
         local varlist1 "`_varlist1'"
         
         qui cap assert "`varlist1'" == ""
@@ -79,7 +79,7 @@ program frmerge
         local n ""
     }
     
-    if ("`mtype'" == "1:1" & "`varlist1'" == "_n") {
+    if "`mtype'" == "1:1" & "`varlist1'" == "_n" {
         qui cap assert "`varlist2'" == ""
         if _rc {
             noi di as err "{bf:merge 1:1 _n} speficied; {bf:varlist2} must be empty"
@@ -89,15 +89,19 @@ program frmerge
     else {
         local wc_vl1 = wordcount("`varlist1'")
         local wc_vl2 = wordcount("`varlist2'")
-        if `wc_vl2' > 0 qui cap assert `wc_vl1' == `wc_vl2'
-        if _rc {
-            di as smcl as err "variables misspecified"
-            di as smcl as err "{p 4 4 2}"
-            di as smcl as err "You specified `wc_vl1' variables after the {bf:frmerge `mtype'}"
-            di as smcl as err "command, but `wc_vl2' variable in the {bf:frame()} option."
-            di as smcl as err "There must be a one-to-one correspondence between the two variable lists."
-            di as smcl as err "{p_end}"
-            exit 198
+        if `wc_vl2' > 0 {
+            qui cap assert `wc_vl1' == `wc_vl2'
+            if _rc {
+                di as smcl as err "variables misspecified"
+                di as smcl as err "{p 4 4 2}"
+                di as smcl as err "You specified `wc_vl1' variables after the"
+                di as smcl as err "{bf:frmerge `mtype'} command, but `wc_vl2'"
+                di as smcl as err "variable in the {bf:frame()} option."
+                di as smcl as err "There must be a one-to-one correspondence"
+                di as smcl as err "between the two variable lists."
+                di as smcl as err "{p_end}"
+                exit 198
+            }
         }
     }
     
@@ -108,7 +112,7 @@ program frmerge
         
         // rename vars
         local _varlist1 "`varlist1'"
-        if "`varlist2'" != "" foreach var2 of local varlist2 {
+        if ("`varlist2'" != "") foreach var2 of local varlist2 {
             gettoken var1 _varlist1 : _varlist1
             if "`var2'" == "." continue
             rename `var2' `var1'
@@ -121,7 +125,7 @@ program frmerge
     
     merge `mtype' `n' `varlist1' using "`to_be_merged'", `options'
     
-    if ("`sort'" != "") {
+    if "`sort'" != "" {
         sort `varlist1'
     }
 end

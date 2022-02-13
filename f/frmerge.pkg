@@ -3,7 +3,7 @@ d 'FRMERGE': module to merge a target frame with current frame
 d
 d {cmd:frmerge} merges specified frame with current frame.
 d
-d Distribution-Date: 20220121
+d Distribution-Date: 20220213
 d
 d Author: Gorkem Aksaray, Koc University
 d Support: gaksaray@ku.edu.tr
