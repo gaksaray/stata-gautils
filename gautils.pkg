@@ -3,7 +3,7 @@ d 'GAUTILS': a collection of Stata utility modules
 d
 d A collection of Stata utility modules.
 d
-d Distribution-Date: 20220213
+d Distribution-Date: 20220317
 d
 d Author: Gorkem Aksaray, Koc University
 d Support: gaksaray@ku.edu.tr
@@ -43,5 +43,7 @@ f r/reshape2l.sthlp
 F r/test.do
 f s/stpiece2.ado
 f s/stpiece2.sthlp
+f s/svlog.ado
+f s/svlog.sthlp
 f u/uniqueby.ado
 f u/uniqueby.sthlp

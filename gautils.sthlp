@@ -84,4 +84,7 @@
 {help stpiece2}: module to estimate piecewise-constant exponential model
 
 {phang}
+{help svlog}: module to save logs to /logs/ folder with time and date stamp
+
+{phang}
 {help uniqueby}: module to report number of unique values by group

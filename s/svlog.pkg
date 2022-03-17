@@ -1,0 +1,15 @@
+v 3
+d 'SVLOG': module to save logs to /logs/ folder with time and date stamp
+d
+d {cmd:svlog} is a wrapper for log command. It opens a log file with the name
+d _current_log, and saves it with the {it:script_name} and optionally
+d (by default) a time and date stamp, to ./logs/ (or optionally
+d subdirectory/logs/) folder.
+d
+d Distribution-Date: 20220317
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f svlog.ado
+f svlog.sthlp
