@@ -1,5 +1,8 @@
 {smcl}
 {* *! version 0.1.0  17mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>}{...}
+{vieweralsosee "log" "log"}{...}
+{cmd:help svlog}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
+{hline}
 
 {title:Title}
 
@@ -20,14 +23,15 @@
 
 {p 8 17 2}
 {cmd:svlog clear}
+[{cmd:,} {opt dir(subdirectory)}]
 
 {synoptset 20 tabbed}{...}
 {synopthdr}
 {synoptline}
 {* syntab:tab}{...}
-{synopt:{opt [no]td}}do not write time and date stamp to log file; {opt td} is default{p_end}
+{synopt:[{opt no}]{opt td}}do not write time and date stamp to log file; {opt td} is default{p_end}
 {synopt:{opt clear}}run {opt svlog clear} before opening log file{p_end}
-{synopt:{opt dir()}}locate and save /logs/ folder within the subdirectory{p_end}
+{synopt:{opt dir(subdirectory)}}locate and save /logs/ folder within the subdirectory{p_end}
 {synopt:{opt view}}view the log file immediately after it is closed{p_end}
 {synoptline}
 {p2colreset}{...}

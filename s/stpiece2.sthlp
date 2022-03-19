@@ -3,6 +3,9 @@
 {viewerjumpto "Syntax" "stpiece2##syntax"}{...}
 {viewerjumpto "Description" "stpiece2##description"}{...}
 {viewerjumpto "Author" "stpiece2##author"}{...}
+{cmd:help stpiece2}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
+{hline}
+
 {title:Title}
 
 {phang}
