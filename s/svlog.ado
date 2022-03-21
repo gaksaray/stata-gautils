@@ -1,9 +1,9 @@
-*! version 0.1.0  17mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 0.1.1  21mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 
 capture program drop svlog
 program define svlog
     version 12
-    gettoken subcmd 0: 0, parse(,)
+    gettoken subcmd 0: 0
     if "`subcmd'" == "close" {
         _logclose `0' 
     }
