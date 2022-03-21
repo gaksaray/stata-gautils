@@ -1,4 +1,4 @@
-*! version 1.01  31jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.1.0  21mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *!
 *! Syntax
 *! ------
@@ -7,12 +7,14 @@
 *!
 *!   where the syntax of commandlist is
 *!
-*!     command [ || command [ || command [...]]]
+*!     command [ |> command [ |> command [...]]]
 *!
 *!   and comand is any Stata command.
 *!
 *! Changelog
 *! ---------
+*!   [1.1.0]
+*!     - Changed the 'pipe' operator from "||" to "|>" as in R language.
 *!   [1.01]
 *!     - Using an if expression on a non-current frame was causing an error.
 *!       This is now fixed.
@@ -59,29 +61,14 @@ program define frapply
         confirm new frame `intoname'
     }
     
-    // multiple command check
-    local cmdchk `"`command'"'
-    while `"`cmdchk'"' != "" {
-        gettoken cmd cmdchk : cmdchk, parse("|")
-        if `"`cmd'"' == "|" {
-            if substr(`"`cmdchk'"', 1, 1) == "|" {
-                gettoken cmd cmdchk : cmdchky, parse("|")
-                continue
-            }
-            else {
-                noisily display as error "| invalid command"
-                exit 198
-            }
-        }
-    }
-    
     // run command(s)
     frame `cframe' {
         preserve
         quietly capture keep `in' `if'
         while `"`command'"' != "" {
-            gettoken cmd command : command, parse("|")
-            if `"`cmd'"' == "|" continue
+            local command = subinstr(`"`command'"', " |> ", "@", 1)
+            gettoken cmd command : command, parse("@")
+            if `"`cmd'"' == "@" continue
             `quietly' `cmd'
         }
         frput, into(`intoname') `intoreplace'
