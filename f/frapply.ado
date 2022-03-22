@@ -1,4 +1,4 @@
-*! version 1.1.0  21mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.1.1  22mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *!
 *! Syntax
 *! ------
@@ -13,6 +13,10 @@
 *!
 *! Changelog
 *! ---------
+*!   [1.1.1]
+*!     - Rewrote parsing of command list to allow for protected locals
+*!       while also allowing for | and > characters within the individual
+*!       commands.
 *!   [1.1.0]
 *!     - Changed the 'pipe' operator from "||" to "|>" as in R language.
 *!   [1.01]
@@ -65,11 +69,18 @@ program define frapply
     frame `cframe' {
         preserve
         quietly capture keep `in' `if'
+        
         while `"`command'"' != "" {
-            local command = subinstr(`"`command'"', " |> ", "@", 1)
-            gettoken cmd command : command, parse("@")
-            if `"`cmd'"' == "@" continue
-            `quietly' `cmd'
+            gettoken part command : command, parse("|")
+            if substr(`"`command'"', 1, 2) == "|>" | `"`command'"' == "" {
+                gettoken sep command : command, parse("|")
+                gettoken sep command : command, parse(">")
+                `quietly' `cmd' `part'
+                local cmd ""
+            }
+            else {
+                local cmd `"`cmd' `part'"'
+            }
         }
         frput, into(`intoname') `intoreplace'
         restore
