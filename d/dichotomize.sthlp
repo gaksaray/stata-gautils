@@ -5,6 +5,7 @@
 {viewerjumpto "Options" "dichotomize##options"}{...}
 {viewerjumpto "Examples" "dichotomize##examples"}{...}
 {viewerjumpto "Author" "dichotomize##author"}{...}
+{vieweralsosee "gautils" "help gautils"}{...}
 {cmd:help dichotomize}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 

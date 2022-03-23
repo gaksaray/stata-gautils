@@ -6,6 +6,7 @@
 {viewerjumpto "Examples" "grpvars##examples"}{...}
 {viewerjumpto "Stored results" "grpvars##results"}{...}
 {viewerjumpto "Author" "grpvars##author"}{...}
+{vieweralsosee "gautils" "help gautils"}{...}
 {hi:help grpvars}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 

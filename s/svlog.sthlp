@@ -1,6 +1,7 @@
 {smcl}
 {* *! version 0.1.1  21mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>}{...}
-{vieweralsosee "log" "log"}{...}
+{vieweralsosee "gautils" "help gautils"}{...}
+{vieweralsosee "log" "help log"}{...}
 {cmd:help svlog}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 

@@ -7,6 +7,7 @@
 {viewerjumpto "Examples" "frapply##examples"}{...}
 {viewerjumpto "Remarks" "frapply##remarks"}{...}
 {viewerjumpto "Author" "frapply##author"}{...}
+{vieweralsosee "gautils" "help gautils"}{...}
 {cmd:help frapply}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 

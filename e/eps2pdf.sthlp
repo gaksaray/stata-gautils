@@ -4,6 +4,7 @@
 {viewerjumpto "Description" "eps2pdf##description"}{...}
 {viewerjumpto "Examples" "eps2pdf##examples"}{...}
 {viewerjumpto "Author" "eps2pdf##author"}{...}
+{vieweralsosee "gautils" "help gautils"}{...}
 {cmd:help eps2pdf}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 

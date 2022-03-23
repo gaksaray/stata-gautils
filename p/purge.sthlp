@@ -3,6 +3,7 @@
 {viewerjumpto "Syntax" "purge##syntax"}{...}
 {viewerjumpto "Description" "purge##description"}{...}
 {viewerjumpto "Author" "purge##author"}{...}
+{vieweralsosee "gautils" "help gautils"}{...}
 {cmd:help purge}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 

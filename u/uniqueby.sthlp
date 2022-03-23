@@ -6,6 +6,7 @@
 {viewerjumpto "Stored results" "uniqueby##results"}{...}
 {viewerjumpto "Examples" "uniqueby##examples"}{...}
 {viewerjumpto "Author" "uniqueby##author"}{...}
+{vieweralsosee "gautils" "help gautils"}{...}
 {cmd:help uniqueby}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
 {hline}
 
