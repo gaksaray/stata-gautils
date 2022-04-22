@@ -1,18 +1,22 @@
-*! version 1.0  09jul2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
-*! Estimate piecewise-constant exponential model (allows factor variables)
+*! version 1.0.1  22apr2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*!
+*! Description
+*! -----------
+*!   stpiece2 estimates piecewise-constant exponential model while allowing for
+*!   factor variables in model specification.
 *! 
 *! Syntax
 *! ------
-*!   stpiece [varlist] [if] [in] [, tp(numlist) tv(varlist) presplit(#) nopreserve]
+*!   stpiece2 [varlist] [if] [in] [, tp(numlist) tv(varlist) presplit(#) nopreserve]
 *! 
 *! Example
 *! -------
 *!   webuse cancer, clear
 *!   generate n = _n
 *!   stset studytime, failure(died) id(n)
-*!   stpiece, tp(0(10)40)
-*!   stpiece i.drug, tp(0(10)40) tv(age) preserve
-*!   stpiece i.drug, tv(age) pre(4)
+*!   stpiece2, tp(0(10)40)
+*!   stpiece2 i.drug, tp(0(10)40) tv(age) preserve
+*!   stpiece2 i.drug, tv(age) pre(4)
 *! 
 *! Acknowledgement
 *! ---------------
@@ -63,5 +67,5 @@ program stpiece2
         local tvlist = r(varlist)
     }
     
-    streg `tplist' `tvlist' `varlist' `if' `in', nocons d(e) `options'
+    streg `tplist' `tvlist' `varlist' `if' `in', nocons dist(e) `options'
 end

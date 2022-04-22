@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.0  09jul2021}{...}
+{* *! version 1.0.1  22apr2021}{...}
 {viewerjumpto "Syntax" "stpiece2##syntax"}{...}
 {viewerjumpto "Description" "stpiece2##description"}{...}
 {viewerjumpto "Author" "stpiece2##author"}{...}
@@ -17,7 +17,13 @@
 {title:Syntax}
 
 {p 8 16 2}
-{cmd: stpiece2} [{help varlist}] [{help if}] [{help in}] [, {opt tp}{cmd:(}{help numlist}{cmd:)} {opt tv}{cmd:(}{help varlist}{cmd:)} {opt pre:split(#)} {opt nopre:serve}]
+{cmd: stpiece2}
+[{help varlist}] [{help if}] [{help in}]
+[, {opt tp}{cmd:(}{help numlist}{cmd:)}
+   {opt tv}{cmd:(}{help varlist}{cmd:)}
+   {opt pre:split(#)}
+   {opt nopre:serve}
+   {help streg:{it:streg_options}}]
 
 
 {marker description}{...}
