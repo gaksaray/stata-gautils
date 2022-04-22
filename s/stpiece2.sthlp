@@ -77,9 +77,9 @@ There are two advantages: 1) speed (particularly in large data sets) derived fro
 {phang2}{cmd:. stset studytime, failure(died) id(n)}{p_end}
 
 {pstd}Estimate the piecewise-constant model{p_end}
-{phang2}{cmd:. stpiece, tp(0(10)40)}{p_end}
-{phang2}{cmd:. stpiece i.drug, tp(0(10)40) tv(age) nopreserve}{p_end}
-{phang2}{cmd:. stpiece i.drug, tv(age) pre(4)}{p_end}
+{phang2}{cmd:. stpiece2, tp(0(10)40)}{p_end}
+{phang2}{cmd:. stpiece2 i.drug, tp(0(10)40) tv(age) nopreserve}{p_end}
+{phang2}{cmd:. stpiece2 i.drug, tv(age) pre(4)}{p_end}
 
 
 {marker references}{...}
