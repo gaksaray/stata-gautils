@@ -1,4 +1,4 @@
-*! version 1.1.1  22mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.1.2  27apr2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *!
 *! Syntax
 *! ------
@@ -13,6 +13,11 @@
 *!
 *! Changelog
 *! ---------
+*!   [1.1.2]
+*!     - Revised parsing of command list again to allow for "empty pipes".
+*!       The command list can now start with |>, end with |>, and have
+*!       consecutive |>'s with nothing in between. frapply is now robust to
+*!       those "errors".
 *!   [1.1.1]
 *!     - Rewrote parsing of command list to allow for protected locals
 *!       while also allowing for | and > characters within the individual
@@ -72,6 +77,10 @@ program define frapply
         
         while `"`command'"' != "" {
             gettoken part command : command, parse("|")
+            if `"`part'"' == "|" & substr(`"`command'"', 1, 1) == ">" {
+                gettoken part command : command, parse(">")
+                local part ""
+            }
             if substr(`"`command'"', 1, 2) == "|>" | `"`command'"' == "" {
                 gettoken sep command : command, parse("|")
                 gettoken sep command : command, parse(">")
