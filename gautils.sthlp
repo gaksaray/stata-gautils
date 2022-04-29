@@ -18,6 +18,9 @@
 {stata which clearlab:clearlab}: module to clear all labels and notes
 
 {phang}
+{stata which compfmt:compfmt}: module to compress display formats
+
+{phang}
 {stata which dcolmat:dcolmat}: module to return maximum number of integer digits of numeric matrices
 
 {phang}

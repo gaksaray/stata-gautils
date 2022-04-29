@@ -3,3 +3,4 @@ d C-directory
 
 p capdrop module to drop a list of variables without an error
 p clearlab module to clear all labels and notes
+p compfmt module to compress display formats

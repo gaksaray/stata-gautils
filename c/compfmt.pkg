@@ -1,0 +1,14 @@
+v 3
+d 'COMPFMT': module to compress display formats
+d
+d {cmd:compfmt} is a wrapper for {cmd:fmtnum} and {cmd:fmtstr} modules.
+d It sets the display format associated with the numeric variables specified
+d to their default values according to their type, and compresses display
+d format of string variables to their shortest visible form.
+d
+d Distribution-Date: 20220429
+d
+d Author: Gorkem Aksaray, Koc University
+d Support: gaksaray@ku.edu.tr
+d
+f compfmt.ado

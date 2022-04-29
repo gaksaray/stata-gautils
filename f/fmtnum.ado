@@ -17,7 +17,7 @@
 *!                         double  %10.0g
 *!
 *!   fmtnum skips time and date variables unless td option is specified.
-*!   fmtnum preserves format justification, leading zeros, and comman if
+*!   fmtnum preserves format justification, leading zeros, and commas if
 *!   preserve option is specified.
 *!
 *! Example
