@@ -2,7 +2,7 @@
 *!
 *! Syntax
 *! ------
-*!   compfmt varlist] [, td Preserve]
+*!   compfmt [varlist] [, td Preserve]
 *!
 *! Description
 *! -----------
