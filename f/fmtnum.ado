@@ -1,4 +1,4 @@
-*! version 1.2  13feb2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.2.1  05may2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *! Compress display format of numeric variables to their default values
 *!
 *! Syntax
@@ -28,6 +28,8 @@
 *! 
 *! Changelog
 *! ---------
+*!   [1.2.1]
+*!     - Minor bug fix: formats with 2 or more digits can now be preserved.
 *!   [1.2]
 *!     - fmtnum now skips date variables automatically unless td option is
 *!       specified.
@@ -57,7 +59,7 @@ program fmtnum
         }
         
         if "`preserve'" != "" {
-            if regexm("`varfmt'", "^%([-]?)([0]*)[1-9]+\.[0-9]+[f|g|e]([c]?)$") {
+            if regexm("`varfmt'", "^%([-]?)([0]*)[0-9]+\.[0-9]+[f|g|e]([c]?)$") {
                 local just = regexs(1) // justification
                 local lz   = regexs(2) // leading zeros
                 local c    = regexs(3) // commas
