@@ -1,11 +1,11 @@
-*! version 1.2  30nov2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.3  01jul2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *! Add new variables that are functions of existing variables
 *!
 *! Syntax
 *! ------
 *!   mutate fn varlist, fnopts
 *!
-*!   fn is one of {sq, ln, log, exp}, for square, logarithmic transformation,
+*!   fn is one of {sq, sqrt, ln, log, exp}, for square, square root, logarithm,
 *!   and exponentiation, respectively.
 *!
 *!   fnopts:
@@ -21,7 +21,7 @@
 *!       preadd adds x before taking the log
 *!       premultiply multiplies by x before taking the log.
 *!
-*!     for fn = exp, there are currently no options.
+*!     for fn = sqrt and fn = exp, there are currently no options.
 *!   
 *!   Function options can take as many numbers as the number of variables in
 *!   varlist. For example, if there are 4 variables to mutate sq, you can
@@ -34,13 +34,16 @@
 *!   sysuse auto, clear
 *!   local mutated_variables "price trunk weight length"
 *!   keep `mutated_variables'
-*!   mutate sq  `mutated_variables', scale(3 . 2)
-*!   mutate ln  `mutated_variables', preadd(250.5 1 .) premultiply(. . 10)
-*!   mutate log `mutated_variables', preadd(250.5 1 .) premultiply(. . 10)
-*!   mutate exp `mutated_variables'
+*!   mutate sq   `mutated_variables', scale(3 . 2)
+*!   mutate ln   `mutated_variables', preadd(250.5 1 .) premultiply(. . 10)
+*!   mutate log  `mutated_variables', preadd(250.5 1 .) premultiply(. . 10)
+*!   mutate sqrt `mutated_variables'
+*!   mutate exp  `mutated_variables'
 *!
 *! Changelog
 *! ---------
+*!   [1.3]
+*!     Added square root function.
 *!   [1.2]
 *!     Simplified mutate sq labelling when scale is 0 or 1.
 *!     Simplified mutate ln labelling when preadd is 0 or premultiply is 1.
@@ -60,6 +63,7 @@ program mutate
     #delimit ;
     local fnlist    `"
                     "sq",
+                    "sqrt",
                     "ln",
                     "log",
                     "exp"
@@ -80,6 +84,9 @@ program mutate
     confirm numeric variable `varlist'
     
     if "`fn'" == "sq" {
+        _mutate`Fn' `varlist', `options'
+    }
+    if "`fn'" == "sqrt" {
         _mutate`Fn' `varlist', `options'
     }
     if inlist("`fn'", "ln", "log") {
@@ -137,6 +144,16 @@ program define _mutateSq
             local lbl_scale_i " / 10^`scale_i'"
         }
         label var `var'sq "`var'^2`lbl_scale_i'"
+    }
+end
+
+capture program drop _mutateSqrt
+program define _mutateSqrt
+    syntax varlist [, *]
+    
+    foreach var of varlist `varlist' {
+        qui generate `var'sqrt = sqrt(`var'), after(`var')
+        label var `var'sqrt "sqrt(`var')"
     }
 end
 
