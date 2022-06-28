@@ -12,7 +12,7 @@ d terms by dividing by 10^x, where x can be specified differently for each
 d variable. You can do that too in one line with {cmd:mutate}. Type {inp:which mutate}
 d in Stata after downloading the module to see its syntax and a few examples.
 d
-d Distribution-Date: 20220601
+d Distribution-Date: 20220628
 d
 d Author: Gorkem Aksaray, Koc University
 d Support: gaksaray@ku.edu.tr

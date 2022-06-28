@@ -1,4 +1,4 @@
-*! version 1.3  01jul2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.3.1  28jun2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
 *! Add new variables that are functions of existing variables
 *!
 *! Syntax
@@ -42,6 +42,8 @@
 *!
 *! Changelog
 *! ---------
+*!   [1.3.1]
+*!     Minor bug fix: better varlist expansion.
 *!   [1.3]
 *!     Added square root function.
 *!   [1.2]
@@ -72,16 +74,17 @@ program mutate
     #delimit cr
     
     if inlist("`1'", `fnlist') {
-        local fn `1'
+        local fn "`1'"
         local Fn = strproper("`fn'")
-        local varlist `0'
+        local varlist "`0'"
     }
     else {
         error 198
         exit 198
     }
     
-    confirm numeric variable `varlist'
+    qui ds `varlist'
+    confirm numeric variable `r(varlist)'
     
     if "`fn'" == "sq" {
         _mutate`Fn' `varlist', `options'
@@ -90,7 +93,7 @@ program mutate
         _mutate`Fn' `varlist', `options'
     }
     if inlist("`fn'", "ln", "log") {
-        _mutateLn `fn' `varlist', `options'
+        _mutateLn   `varlist', `options' fn(`fn')
     }
     if "`fn'" == "exp" {
         _mutate`Fn' `varlist', `options'
@@ -161,17 +164,14 @@ capture program drop _mutateLn
 program define _mutateLn
     #delimit ;
     syntax
-        anything(name=arguments)
+        varlist
         [,
         PREAdd(numlist miss min=1)
         PREMultiply(numlist miss min=1)
+        fn(string)
         ]
     ;
     #delimit cr
-    
-    gettoken 1 0: arguments
-    local fn "`1'"
-    local varlist "`0'"
     
     // set parameter defaults
     local def_preadd = 0
