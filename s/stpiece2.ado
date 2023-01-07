@@ -1,4 +1,4 @@
-*! version 1.0.1  22apr2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0.1  22apr2021  Gorkem Aksaray <aksarayg@tcd.ie>
 *!
 *! Description
 *! -----------

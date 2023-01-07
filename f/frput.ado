@@ -1,4 +1,4 @@
-*! version 1.0  15jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0  15jan2022  Gorkem Aksaray <aksarayg@tcd.ie>
 *!
 *! Syntax
 *! ------

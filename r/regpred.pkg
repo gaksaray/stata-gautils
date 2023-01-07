@@ -5,8 +5,8 @@ d {cmd:regpred} saves predicted values of an estimation model by group.
 d
 d Distribution-Date: 20220114
 d
-d Author: Gorkem Aksaray, Koc University
-d Support: gaksaray@ku.edu.tr
+d Author: Gorkem Aksaray, Trinity College Dublin
+d Support: aksarayg@tcd.ie
 d
 f regpred.ado
 f regpred.sthlp

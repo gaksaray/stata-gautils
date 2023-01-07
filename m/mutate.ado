@@ -1,4 +1,4 @@
-*! version 1.3.1  28jun2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.3.1  28jun2022  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Add new variables that are functions of existing variables
 *!
 *! Syntax

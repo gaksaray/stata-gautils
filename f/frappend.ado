@@ -1,4 +1,4 @@
-*! version 1.1  20jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.1  20jan2022  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Append frame(s) onto current frame
 *!
 *! Syntax

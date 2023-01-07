@@ -1,5 +1,5 @@
 {smcl}
-{* version 1.1.0  21mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>}
+{* version 1.1.0  21mar2022  Gorkem Aksaray <aksarayg@tcd.ie>}
 {viewerjumpto "Syntax" "frapply##syntax"}{...}
 {viewerjumpto "Description" "frapply##description"}{...}
 {viewerjumpto "Options" "frapply##options"}{...}
@@ -163,7 +163,7 @@ does display the mean.
 {title:Author}
 
 {pstd}
-Gorkem Aksaray, Koc University.{break}
-Email: {browse "mailto:gaksaray@ku.edu.tr":gaksaray@ku.edu.tr}{break}
+Gorkem Aksaray, Trinity College Dublin.{break}
+Email: {browse "mailto:aksarayg@tcd.ie":aksarayg@tcd.ie}{break}
 Personal Website: {browse "https://sites.google.com/site/gorkemak/":sites.google.com/site/gorkemak}{break}
 GitHub: {browse "https://github.com/gaksaray/":github.com/gaksaray}{break}

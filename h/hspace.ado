@@ -1,4 +1,4 @@
-*! version 1.0  12jul2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0  12jul2021  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Add LaTeX horizontal spaces to variable and value labels
 *! 
 *! Syntax

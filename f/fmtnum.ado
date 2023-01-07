@@ -1,4 +1,4 @@
-*! version 1.2.1  05may2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.2.1  05may2022  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Compress display format of numeric variables to their default values
 *!
 *! Syntax

@@ -5,8 +5,8 @@ d {cmd:parsefile} parses the file name and extension from the using modifier.
 d
 d Distribution-Date: 20230107
 d
-d Author: Gorkem Aksaray, Koc University
-d Support: gaksaray@ku.edu.tr
+d Author: Gorkem Aksaray, Trinity College Dublin
+d Support: aksarayg@tcd.ie
 d
 f parsefile.ado
 f parsefile.do

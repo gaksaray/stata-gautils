@@ -14,7 +14,7 @@ d in Stata after downloading the module to see its syntax and a few examples.
 d
 d Distribution-Date: 20220628
 d
-d Author: Gorkem Aksaray, Koc University
-d Support: gaksaray@ku.edu.tr
+d Author: Gorkem Aksaray, Trinity College Dublin
+d Support: aksarayg@tcd.ie
 d
 f mutate.ado

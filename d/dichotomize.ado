@@ -1,4 +1,4 @@
-*! version 1.2  10jul2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.2  10jul2021  Gorkem Aksaray <aksarayg@tcd.ie>
 
 capture program drop dichotomize
 program dichotomize

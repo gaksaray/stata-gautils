@@ -1,4 +1,4 @@
-*! version 1.0  30jun2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0  30jun2021  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Capture drop a list of variables without an error
 *! 
 *! Syntax

@@ -1,4 +1,4 @@
-*! version 1.0  28jul2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0  28jul2021  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Returns dcolumn and %fmt formatting from matrices in stored estimates
 *! 
 *! Syntax

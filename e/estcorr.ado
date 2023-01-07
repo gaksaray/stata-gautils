@@ -1,4 +1,4 @@
-*! version 1.0  02jul2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0  02jul2021  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Post correlations in sequential manner
 *!
 *! Description
