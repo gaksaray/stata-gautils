@@ -1,9 +1,9 @@
 v 3
-d 'PARSEFILE': module to parse file name from the using modifier
+d 'PARSEFILE': module to parse file name and extension from the using modifier
 d
-d {cmd:parsefile} parses the file name from the using modifier.
+d {cmd:parsefile} parses the file name and extension from the using modifier.
 d
-d Distribution-Date: 20220122
+d Distribution-Date: 20230107
 d
 d Author: Gorkem Aksaray, Koc University
 d Support: gaksaray@ku.edu.tr

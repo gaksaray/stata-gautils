@@ -1,5 +1,5 @@
-*! version 1.0  22jan2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
-*! Parse file name from the using modifier
+*! version 1.1  07jan2023  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! Parse file name and extension from the using modifier
 *!
 *! Syntax
 *! ------
@@ -11,15 +11,18 @@
 *!
 *!   Scalars
 *!     r(filename)  file name
+*!     r(extension) file extension if an extension is provided in using
 
 capture program drop parsefile
 program parsefile, rclass
-    syntax using/ [, EXTension]
+    syntax using/
     
     local next "next"
     while "`next'" != "." & "`using'" != "" {
         gettoken next using : using, parse("~:/\")
     }
-    gettoken filename : next, parse(".")
+    gettoken filename extension : next, parse(".")
+    gettoken period extension : extension, parse(".")
     return local filename "`filename'"
+    return local extension "`extension'"
 end
