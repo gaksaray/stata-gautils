@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.1.1  21mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>}{...}
+{* *! version 0.1.1  21mar2022  Gorkem Aksaray <aksarayg@tcd.ie>}{...}
 {vieweralsosee "gautils" "help gautils"}{...}
 {vieweralsosee "log" "help log"}{...}
 {cmd:help svlog}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
@@ -55,7 +55,7 @@ to ./logs/ (or optionally {it:subdirectory}/logs/) folder.
 {title:Author}
 
 {pstd}
-Gorkem Aksaray, Koç University.{break}
-Email: {browse "mailto:gaksaray@ku.edu.tr":gaksaray@ku.edu.tr}{break}
+Gorkem Aksaray, Trinity College Dublin.{break}
+Email: {browse "mailto:aksarayg@tcd.ie":aksarayg@tcd.ie}{break}
 Personal Website: {browse "https://sites.google.com/site/gorkemak/":sites.google.com/site/gorkemak}{break}
 GitHub: {browse "https://github.com/gaksaray/":github.com/gaksaray}{break}

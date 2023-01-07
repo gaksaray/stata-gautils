@@ -1,4 +1,4 @@
-*! version 0.1.1  21mar2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 0.1.1  21mar2022  Gorkem Aksaray <aksarayg@tcd.ie>
 
 capture program drop svlog
 program define svlog

@@ -5,8 +5,8 @@ d {cmd:purge} (reduce) Stata memory while preserving the dataset.
 d
 d Distribution-Date: 20210207
 d
-d Author: Gorkem Aksaray, Koc University
-d Support: gaksaray@ku.edu.tr
+d Author: Gorkem Aksaray, Trinity College Dublin
+d Support: aksarayg@tcd.ie
 d
 f purge.ado
 f purge.sthlp

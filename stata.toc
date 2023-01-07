@@ -1,5 +1,5 @@
 v 3
-d A collection of Stata utility modules by Gorkem Aksaray <gaksaray@ku.edu.tr>
+d A collection of Stata utility modules by Gorkem Aksaray <aksarayg@tcd.ie>
 
 t c
 t d

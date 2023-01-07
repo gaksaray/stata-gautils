@@ -5,7 +5,7 @@ d {cmd:frmerge} merges specified frame with current frame.
 d
 d Distribution-Date: 20220213
 d
-d Author: Gorkem Aksaray, Koc University
-d Support: gaksaray@ku.edu.tr
+d Author: Gorkem Aksaray, Trinity College Dublin
+d Support: aksarayg@tcd.ie
 d
 f frmerge.ado

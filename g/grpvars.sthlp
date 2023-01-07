@@ -1,5 +1,5 @@
 {smcl}
-{* version 1.5  24dec2021  Gorkem Aksaray <gaksaray@ku.edu.tr>}{...}
+{* version 1.5  24dec2021  Gorkem Aksaray <aksarayg@tcd.ie>}{...}
 {viewerjumpto "Syntax" "grpvars##syntax"}{...}
 {viewerjumpto "Description" "grpvars##description"}{...}
 {viewerjumpto "Options" "grpvars##options"}{...}
@@ -257,7 +257,7 @@ variable groups in memory.
 {title:Author}
 
 {pstd}
-Gorkem Aksaray, Koc University.{p_end}
-{p 4}Email: {browse "mailto:gaksaray@ku.edu.tr":gaksaray@ku.edu.tr}{p_end}
+Gorkem Aksaray, Trinity College Dublin.{p_end}
+{p 4}Email: {browse "mailto:aksarayg@tcd.ie":aksarayg@tcd.ie}{p_end}
 {p 4}Personal Website: {browse "https://sites.google.com/site/gorkemak/":sites.google.com/site/gorkemak}{p_end}
 {p 4}GitHub: {browse "https://github.com/gaksaray/":github.com/gaksaray}{p_end}

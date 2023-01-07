@@ -1,4 +1,4 @@
-*! version 1.0  06feb2021  Gorkem Aksaray
+*! version 1.0  06feb2021  Gorkem Aksaray <aksarayg@tcd.ie>
 
 capture program drop eps2pdf
 program eps2pdf

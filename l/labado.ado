@@ -1,4 +1,4 @@
-*! version 1.0  29jul2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0  29jul2021  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Save variable labels as an ado program
 *! 
 *! Syntax

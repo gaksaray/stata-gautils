@@ -1,4 +1,4 @@
-*! version 1.0  07feb2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0  07feb2021  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Purge (reduce) Stata memory while preserving the dataset
 
 program purge	

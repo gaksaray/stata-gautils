@@ -1,4 +1,4 @@
-*! version 1.2  13feb2022  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.2  13feb2022  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Merge a target frame with current frame
 *!
 *! Syntax

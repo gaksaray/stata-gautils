@@ -1,4 +1,4 @@
-*! version 1.0  22jun2021  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.0  22jun2021  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Clear all variable labels, value labels, and notes from the dataset
 *!
 *! Examples

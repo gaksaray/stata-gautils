@@ -1,4 +1,4 @@
-*! version 1.5.1  06apr2021  Gorkem Aksaray
+*! version 1.5.1  06apr2021  Gorkem Aksaray <aksarayg@tcd.ie>
 
 capture program drop reshape2l
 program reshape2l

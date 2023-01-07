@@ -1,4 +1,4 @@
-*! version 1.1  07jan2023  Gorkem Aksaray <gaksaray@ku.edu.tr>
+*! version 1.1  07jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Parse file name and extension from the using modifier
 *!
 *! Syntax
