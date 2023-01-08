@@ -1,4 +1,4 @@
-*! version 0.1  07jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 0.2  08jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Fragmentize LaTeX tables exported by collect suite of commands
 *! 
 *! Syntax
@@ -19,8 +19,6 @@ program fragtable
     version 17
     
     syntax [using/] [, SAVing(string asis) NOIsily]
-    gettoken saving comma_replace : saving , parse(",")
-    gettoken comma replace : comma_replace , parse(",")
     
     if `"`using'"' == "" {
         if `"`s(filename)'"' == "" {
@@ -32,11 +30,26 @@ program fragtable
         }
     }
     
+    if `"`saving'"' == "" {
+        local saving `"`using'"'
+        local replace "replace"
+    }
+    if `"`saving'"' != "" {
+        local _using `"`using'"' // protect main `using'
+        local 0 `"using `saving'"'
+        syntax using/ [, replace]
+        local saving `"`using'"'
+        local replace "`replace'"
+        local using `"`_using'"'
+    }
+    
     mata: st_local("suffix", pathsuffix(`"`using'"'))
+/*
     if `"`suffix'"' == "" {
         local suffix ".tex"
         local using `"`using'`suffix'"'
     }
+*/
     if `"`suffix'"' != ".tex" {
         di as err "{p 0 0 2}"
         di as err "incorrect file type specified"
@@ -47,10 +60,12 @@ program fragtable
     }
     
     mata: st_local("suffix", pathsuffix(`"`saving'"'))
+/*
     if `"`suffix'"' == "" {
         local suffix ".tex"
         local saving `"`saving'`suffix'"'
     }
+*/
     if `"`suffix'"' != ".tex" {
         di as err "{p 0 0 2}"
         di as err "incorrect file type specified"
@@ -86,13 +101,8 @@ program fragtable
         file read `fh' line
     }
     file close `tf'
-    if `"`saving'"' == "" {
-        copy `"`tmp'"' `"`using'"' , replace
-    }
-    if `"`saving'"' != "" {
-        copy `"`tmp'"' `"`saving'"', `replace'
-    }
     
+    copy `"`tmp'"' `"`saving'"', `replace'
     mata: st_local("basename", pathbasename(`"`saving'"'))
     di as txt `"(fragment table saved to file {browse `"`saving'"':`basename'})"'
 end
