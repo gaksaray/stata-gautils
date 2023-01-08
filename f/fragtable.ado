@@ -1,18 +1,18 @@
-*! version 0.2.1  08jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 0.3  09jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Fragmentize LaTeX tables exported by collect suite of commands
 *! 
 *! Syntax
 *! ------
-*!   fragtable using filename.tex [, SAVing(filename.tex [, replace]) NOIsily]
+*!   fragtable using filename[.tex] [, SAVing(filename[.tex] [, replace]) NOIsily]
 *! 
 *! Example
 *! -------
 *!   sysuse auto, clear
 *!   regress price mpg
 *!   estimates store m1
-*!   etable, est(m1) export(table1.tex, replace) tableonly // full table env.
+*!   etable, est(m1) export(table1.tex, replace) // full document with table env.
 *!   capture mkdir results
-*!   fragtable, saving(results/regtab1.tex, replace) // only tabular env.
+*!   fragtable, saving(results/regtab1, replace) // only tabular env.
 
 capture program drop fragtable
 program fragtable
@@ -43,14 +43,14 @@ program fragtable
         local using `"`_using'"'
     }
     
-    mata: st_local("suffix", pathsuffix(`"`using'"'))
-/*
+    mata: suffix = subinstr(pathsuffix(`"`using'"'), ".", "")
+    mata: st_local("suffix", suffix)
+    
     if `"`suffix'"' == "" {
-        local suffix ".tex"
-        local using `"`using'`suffix'"'
+        local suffix "tex"
+        local using `"`using'.`suffix'"'
     }
-*/
-    if `"`suffix'"' != ".tex" {
+    else if `"`suffix'"' != "tex" {
         di as err "{p 0 0 2}"
         di as err "incorrect file type specified"
         di as err "in {bf:using};"
@@ -59,14 +59,14 @@ program fragtable
         exit 198
     }
     
-    mata: st_local("suffix", pathsuffix(`"`saving'"'))
-/*
+    mata: suffix = subinstr(pathsuffix(`"`saving'"'), ".", "")
+    mata: st_local("suffix", suffix)
+    
     if `"`suffix'"' == "" {
-        local suffix ".tex"
-        local saving `"`saving'`suffix'"'
+        local suffix "tex"
+        local saving `"`saving'.`suffix'"'
     }
-*/
-    if `"`suffix'"' != ".tex" {
+    else if `"`suffix'"' != "tex" {
         di as err "{p 0 0 2}"
         di as err "incorrect file type specified"
         di as err "in {bf:saving()};"
