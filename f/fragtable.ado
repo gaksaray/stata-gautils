@@ -1,9 +1,9 @@
-*! version 0.2  08jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 0.2.1  08jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Fragmentize LaTeX tables exported by collect suite of commands
 *! 
 *! Syntax
 *! ------
-*!   fragtable using filename[.tex] [, SAVing(filename[.tex] [, replace]) NOIsily]
+*!   fragtable using filename.tex [, SAVing(filename.tex [, replace]) NOIsily]
 *! 
 *! Example
 *! -------
@@ -22,7 +22,7 @@ program fragtable
     
     if `"`using'"' == "" {
         if `"`s(filename)'"' == "" {
-            di as err "last LaTeX table from {bf: collect export} not found"
+            di as err "last TeX table from {bf: collect export} not found"
             exit 197
         }
         else {
