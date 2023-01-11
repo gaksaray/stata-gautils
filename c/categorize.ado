@@ -1,9 +1,11 @@
-*! version 0.1  11jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 0.2  11jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Create indicator variables with corresponding value labels
 *! 
 *! Syntax
 *! ------
-*!   sysuse varname [, stub(name) label(string) base(integer) order_options]
+*!   sysuse varname [, stub(name) label(string) {base|base(#)} order_options]
+*!
+*!      where order_options are first, last, Before(varname), and After(varname)
 *! 
 *! Examples
 *! --------
@@ -14,9 +16,11 @@
 
 capture program drop categorize
 program categorize
-    cap syntax varname [, stub(name local) label(string) base(numlist min=1 max=1 integer) *]
+    cap syntax varname [, stub(name local) label(string) base(numlist min=1 max=1 integer) ///
+                          first last Before(varname) After(varname)]
     if _rc {
-        syntax varname [, stub(name local) label(string) base                              *]
+        syntax varname [, stub(name local) label(string) base                              ///
+                          first last Before(varname) After(varname)]
     }
     
     confirm numeric variable `varlist'
