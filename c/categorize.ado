@@ -1,4 +1,4 @@
-*! version 0.2  11jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 0.3  19jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Create indicator variables with corresponding value labels
 *! 
 *! Syntax
@@ -52,7 +52,7 @@ program categorize
     foreach l of local ls {
         confirm integer number `l'
         
-        local vallab_`l' : label `varlist' `l'
+        local vallab_`l' : label (`varlist') `l'
         
         local newvarlab "`label' = `vallab_`l''"
         
