@@ -1,10 +1,13 @@
-*! version 0.3  09jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 0.4  22jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Fragmentize LaTeX tables exported by collect suite of commands
-*! 
+*!
 *! Syntax
 *! ------
 *!   fragtable using filename[.tex] [, SAVing(filename[.tex] [, replace]) NOIsily]
-*! 
+*!
+*!     if using is omitted, it defaults to the last table
+*!     if saving is omitted, it defaults to overwriting using
+*!
 *! Example
 *! -------
 *!   sysuse auto, clear
@@ -34,7 +37,7 @@ program fragtable
         local saving `"`using'"'
         local replace "replace"
     }
-    if `"`saving'"' != "" {
+    else if `"`saving'"' != "" {
         local _using `"`using'"' // protect main `using'
         local 0 `"using `saving'"'
         syntax using/ [, replace]
