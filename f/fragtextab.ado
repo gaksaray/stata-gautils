@@ -1,27 +1,11 @@
-*! version 0.4  22jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.0  30jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Fragmentize LaTeX tables exported by collect suite of commands
-*!
-*! Syntax
-*! ------
-*!   fragtable using filename[.tex] [, SAVing(filename[.tex] [, replace]) NOIsily]
-*!
-*!     if using is omitted, it defaults to the last table
-*!     if saving is omitted, it defaults to overwriting using
-*!
-*! Example
-*! -------
-*!   sysuse auto, clear
-*!   regress price mpg
-*!   estimates store m1
-*!   etable, est(m1) export(table1.tex, replace) // full document with table env.
-*!   capture mkdir results
-*!   fragtable, saving(results/regtab1, replace) // only tabular env.
 
-capture program drop fragtable
-program fragtable
+capture program drop fragtextab
+program fragtextab
     version 17
     
-    syntax [using/] [, SAVing(string asis) NOIsily]
+    syntax [using/] [, saving(string asis) NOIsily]
     
     if `"`using'"' == "" {
         if `"`s(filename)'"' == "" {
