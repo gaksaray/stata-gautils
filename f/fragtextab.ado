@@ -1,5 +1,11 @@
 *! version 1.0  30jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Fragmentize LaTeX tables exported by collect suite of commands
+*!
+*! Changelog
+*! ---------
+*!   [1.0]
+*!     - Initial release.
+
 
 capture program drop fragtextab
 program fragtextab
