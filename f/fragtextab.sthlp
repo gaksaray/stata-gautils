@@ -30,7 +30,7 @@ Stata 17 introduced {cmd:collect} suite of commands
 all of which can {help collect export:export} as LaTeX files.
 {help collect_export##tex_opttbl:TeX options} include {opt tableonly}
 for exporting only the table to the specified file,
-which is useful for including the table in a LaTeX manuscript
+which is useful for including the table in a LaTeX document
 via {it:\input{}} command.
 However, the output includes a {it:table} environment
 in addition to the {it:tabular} environment,
@@ -48,7 +48,7 @@ and throws everything out except the {it:tabular} section:
 {pstd}...{p_end}
 {pstd}{it:\end{tabular}}{p_end}
 
-{pstd}It is meant to be run right after {cmd:collect} commands,
+{pstd}It is usually run right after {cmd:collect} commands,
 although not necessarily.
 {cmd:fragtextab} can edit any .tex file specified by {opt using} option
 and save to any .tex file specified by {opt saving} option.

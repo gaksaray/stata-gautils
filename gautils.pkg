@@ -3,7 +3,7 @@ d 'GAUTILS': a collection of Stata utility modules
 d
 d A collection of Stata utility modules.
 d
-d Distribution-Date: 20230107
+d Distribution-Date: 20230130
 d
 d Author: Gorkem Aksaray, Trinity College Dublin
 d Support: aksarayg@tcd.ie
@@ -22,6 +22,8 @@ f e/estadd_distinct.ado
 f e/estcorr.ado
 f f/fmtnum.ado
 f f/fmtstr.ado
+f f/fragtextab.ado
+f f/fragtextab.sthlp
 f f/frappend.ado
 f f/frapply.ado
 f f/frapply.sthlp
