@@ -1,18 +1,9 @@
-*! version 1.1.2  27apr2022  Gorkem Aksaray <aksarayg@tcd.ie>
-*!
-*! Syntax
-*! ------
-*!   frapply [framename1] [if] [in] [, into(framename2, [replace CHange]) QUIetly]
-*!           [: commandlist]
-*!
-*!   where the syntax of commandlist is
-*!
-*!     command [ |> command [ |> command [...]]]
-*!
-*!   and comand is any Stata command.
+*! version 1.1.3  03feb2022  Gorkem Aksaray <aksarayg@tcd.ie>
 *!
 *! Changelog
 *! ---------
+*!   [1.1.3]
+*!     - More efficient frame copying to achieve slightly faster frapply.
 *!   [1.1.2]
 *!     - Revised parsing of command list again to allow for "empty pipes".
 *!       The command list can now start with |>, end with |>, and have
@@ -71,10 +62,10 @@ program define frapply
     }
     
     // run command(s)
-    frame `cframe' {
-        preserve
-        quietly capture keep `in' `if'
-        
+    tempname tempframe
+    frame copy `cframe' `tempframe'
+    frame `tempframe' {
+        qui capture keep `in' `if'
         while `"`command'"' != "" {
             gettoken part command : command, parse("|")
             if `"`part'"' == "|" & substr(`"`command'"', 1, 1) == ">" {
@@ -91,9 +82,8 @@ program define frapply
                 local cmd `"`cmd' `part'"'
             }
         }
-        frput, into(`intoname') `intoreplace'
-        restore
     }
+    frame copy `tempframe' `intoname', `replace'
     capture frame `intochange' `intoname'
 end
 
@@ -102,7 +92,7 @@ program define parse_prefix, rclass
     version 16.0
     gettoken from 0 : 0
     capture confirm frame `from'
-    if !_rc frame `from' {
+    if !_rc {
         syntax [if] [in] [, into(string asis) QUIetly]
     }
     else {
@@ -134,15 +124,4 @@ program define parse_into, rclass
     return local name "`name'"
     return local change "`change'"
     return local replace "`replace'"
-end
-
-capture program drop frput
-program frput
-    version 16.0
-    syntax [varlist] [if] [in], into(name local) [replace]
-
-    tempname tmpframe
-    frame put `varlist' `if' `in', into(`tmpframe')
-    frame copy `tmpframe' `into', `replace'
-
 end
