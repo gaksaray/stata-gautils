@@ -1,7 +1,10 @@
-*! version 1.1.4  27feb2022  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.1.5  27feb2022  Gorkem Aksaray <aksarayg@tcd.ie>
 *!
 *! Changelog
 *! ---------
+*!   [1.1.5]
+*!     - Using ||-operator of twoway syntax in command list was causing an error.
+*!       This is now fixed.
 *!   [1.1.4]
 *!     - More robust prefix parsing.
 *!   [1.1.3]
@@ -77,11 +80,11 @@ program define frapply
             if substr(`"`command'"', 1, 2) == "|>" | `"`command'"' == "" {
                 gettoken sep command : command, parse("|")
                 gettoken sep command : command, parse(">")
-                `quietly' `cmd' `part'
+                `quietly' `cmd'`part'
                 local cmd ""
             }
             else {
-                local cmd `"`cmd' `part'"'
+                local cmd `"`cmd'`part'"'
             }
         }
     }
