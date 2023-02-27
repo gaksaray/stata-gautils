@@ -1,7 +1,9 @@
-*! version 1.1.3  03feb2022  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.1.4  27feb2022  Gorkem Aksaray <aksarayg@tcd.ie>
 *!
 *! Changelog
 *! ---------
+*!   [1.1.4]
+*!     - More robust prefix parsing.
 *!   [1.1.3]
 *!     - More efficient frame copying to achieve slightly faster frapply.
 *!   [1.1.2]
@@ -83,17 +85,20 @@ program define frapply
             }
         }
     }
-    frame copy `tempframe' `intoname', `replace'
+    frame copy `tempframe' `intoname', `intoreplace'
     capture frame `intochange' `intoname'
 end
 
 capture program drop parse_prefix
 program define parse_prefix, rclass
     version 16.0
-    gettoken from 0 : 0
+    gettoken from 0 : 0, parse(" ,")
     capture confirm frame `from'
-    if !_rc {
+    if !_rc frame `from' {
         syntax [if] [in] [, into(string asis) QUIetly]
+    }
+    else if !inlist("`from'", "", ",", "if", "in") {
+        confirm frame `from'
     }
     else {
         local 0 "`from' `0'"
