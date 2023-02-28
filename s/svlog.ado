@@ -1,9 +1,9 @@
-*! version 0.1.1  21mar2022  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 0.1.2  28feb2023  Gorkem Aksaray <aksarayg@tcd.ie>
 
 capture program drop svlog
 program define svlog
     version 12
-    gettoken subcmd 0: 0
+    gettoken subcmd 0: 0, parse(" ,")
     if "`subcmd'" == "close" {
         _logclose `0' 
     }
