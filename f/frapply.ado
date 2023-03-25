@@ -1,7 +1,10 @@
-*! version 1.1.5  27feb2022  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.1.6  25mar2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *!
 *! Changelog
 *! ---------
+*!   [1.1.6]
+*!     - frapply now returns r-class results, in addition to e-class results if
+*!       any, stored by the last command in commandlist.
 *!   [1.1.5]
 *!     - Using ||-operator of twoway syntax in command list was causing an error.
 *!       This is now fixed.
@@ -27,7 +30,7 @@
 *!     - Initial SSC release.
 
 capture program drop frapply
-program define frapply
+program define frapply, rclass
     version 16.0
     
     // parse prefix and command(s)
@@ -82,6 +85,9 @@ program define frapply
                 gettoken sep command : command, parse(">")
                 `quietly' `cmd'`part'
                 local cmd ""
+                if `"`command'"' == "" {
+                    return add
+                }
             }
             else {
                 local cmd `"`cmd'`part'"'
