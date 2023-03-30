@@ -1,5 +1,5 @@
 {smcl}
-{* version 1.1.0  21mar2022  Gorkem Aksaray <aksarayg@tcd.ie>}
+{* version 1.1.6  25mar2023  Gorkem Aksaray <aksarayg@tcd.ie>}
 {viewerjumpto "Syntax" "frapply##syntax"}{...}
 {viewerjumpto "Description" "frapply##description"}{...}
 {viewerjumpto "Options" "frapply##options"}{...}
