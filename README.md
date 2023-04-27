@@ -8,7 +8,7 @@ several of my projects.
 You may install individual packages or the whole repository from within Stata.
 First, use the following command to set your current net location:
 ```stata
-net from "https://raw.github.com/gaksaray/stata-gautils/master"
+net from "https://raw.githubusercontent.com/gaksaray/stata-gautils/master"
 ```
 
 Next, you can browse among subdirectories by `net cd` command, desribe and
@@ -26,7 +26,7 @@ net install maxvarlen
 To install all packages directly within Stata, use the following command:
 ```stata
 capture ado uninstall gautils
-net install gautils, from("https://raw.github.com/gaksaray/stata-gautils/master")
+net install gautils, from("https://raw.githubusercontent.com/gaksaray/stata-gautils/master")
 ```
 and to update:
 ```stata
