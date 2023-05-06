@@ -1,11 +1,12 @@
 {smcl}
-{* version 1.1.0  21mar2022  Gorkem Aksaray <aksarayg@tcd.ie>}
+{* version 1.1.6  25mar2023  Gorkem Aksaray <aksarayg@tcd.ie>}
 {viewerjumpto "Syntax" "frapply##syntax"}{...}
 {viewerjumpto "Description" "frapply##description"}{...}
 {viewerjumpto "Options" "frapply##options"}{...}
 {viewerjumpto "Stored results" "frapply##results"}{...}
 {viewerjumpto "Examples" "frapply##examples"}{...}
 {viewerjumpto "Remarks" "frapply##remarks"}{...}
+{viewerjumpto "Stored results" "frapply##results"}{...}
 {viewerjumpto "Author" "frapply##author"}{...}
 {vieweralsosee "gautils" "help gautils"}{...}
 {cmd:help frapply}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
@@ -157,6 +158,13 @@ In the same example,
 
 {pstd}
 does display the mean.
+
+
+{marker results}{...}
+{title:Stored results}
+
+{pstd}
+{cmd:frapply} returns all r-class and e-class results stored by the last {it:command} in {it:commandlist}.
 
 
 {marker author}{...}

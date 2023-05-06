@@ -1,6 +1,9 @@
-*! version 1.1  02feb2022  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.2  07apr2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *!
 *! Changelog
+*!   [v1.2]
+*!     - Returned items were locals, not scalars as reported. This is now
+*!       fixed.
 *!   [v1.1]
 *!     - Using string variables or noninteger numeric variables in by() was
 *!       causing error, and uniqueby could not name stores results correctly.
@@ -20,8 +23,8 @@ program uniqueby, rclass
     }
     
     qui levelsof `varlist' `ifcond' `in'
-    return local N `r(N)'
-    return local r `r(r)'
+    return scalar N = r(N)
+    return scalar r = r(r)
     di as text "Number of unique values of {bf:`varlist'} is `r(r)'"
     
     if "`by'" != "" {
@@ -43,8 +46,8 @@ program uniqueby, rclass
             foreach bylevel of local bylevels {
                 qui levelsof `varlist' if `by' == `bylevel' `ifexp' `in'
                 if "`numint'" != "" {
-                    return local N_`by'`bylevel' `r(N)'
-                    return local r_`by'`bylevel' `r(r)'
+                    return scalar N_`by'`bylevel' = r(N)
+                    return scalar r_`by'`bylevel' = r(r)
                 }
                 local byvallab : value label `by'
                 if "`byvallab'" != "" {

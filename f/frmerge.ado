@@ -1,26 +1,24 @@
-*! version 1.2  13feb2022  Gorkem Aksaray <aksarayg@tcd.ie>
-*! Merge a target frame with current frame
+*! version 1.3  01apr2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! Merge a target frame with the current dataset
 *!
 *! Syntax
 *! ------
 *!   frmerge {1:1|m:1|1:m|m:m|1:1 _n} varlist1, frame(framename [varlist2])
-*!                                              [sort merge_options]
+*!                                              [merge_options]
 *!   
-*!   varlist1 contains the match variables in the current dataset.
+*!   varlist1 contains the key variables in the current dataset.
 *!   
-*!   frame(framename [{it:varlist2}]) specifies the name of the frame to be
-*!   merged and optionally the names of variables in varlist2 on which to match.
-*!   If varlist2 is not specified, the match variables are assumed to have the
-*!   same names in both frames. varlist2 can also have . in it, which is
+*!   frame(framename [varlist2]) specifies the name of the frame to be
+*!   merged and optionally the names of key variables on which to match.
+*!   If varlist2 is not specified, the key variables are assumed to have the
+*!   same names in both frames. It can also have . (period) in it, which is
 *!   synonymous with specifying the same variable name as the current dataset.
-*!   
-*!   sort allows for sorting by varlist1 after the merge is completed.
 *!   
 *!   merge_options are the same options as factory merge command.
 *!
 *! Description
 *! -----------
-*!   frmerge merges specified frames with current frame using the usual merge
+*!   frmerge merges specified frames with current dataset using the usual merge
 *!   syntax (see help merge).
 *!
 *! Example
@@ -34,10 +32,12 @@
 *!       rename foreign frgn
 *!   }
 *!   
-*!   frame auto: frmerge 1:1 make foreign, frame(auto2 . frgn) sort
+*!   frame auto: frmerge 1:1 make foreign, frame(auto2 . frgn)
 *!
 *! Changelog
 *! ---------
+*!   [1.3]
+*!     frmerge now preserves sorting. sort option is removed.
 *!   [1.1]
 *!     frmerge now allows for different key variables for current and target
 *!     frames. sort option added. Error messages added.
@@ -45,9 +45,9 @@
 *!     Initial release.
 
 capture program drop frmerge
-program frmerge
+program frmerge, sortpreserve
     version 16
-    syntax anything, frame(string) sort *
+    syntax anything, frame(string) [*]
     
     gettoken mtype  varlist1 : anything
     gettoken frame2 varlist2 : frame
@@ -105,10 +105,8 @@ program frmerge
         }
     }
     
-    tempname frtemp
-    qui frame copy `frame2' `frtemp', replace
-    
-    frame `frtemp' {
+    frame `frame2' {
+        preserve
         
         // rename vars
         local _varlist1 "`varlist1'"
@@ -121,11 +119,9 @@ program frmerge
         // save as temp
         tempfile to_be_merged
         qui save "`to_be_merged'"
+        
+        restore
     }
     
     merge `mtype' `n' `varlist1' using "`to_be_merged'", `options'
-    
-    if "`sort'" != "" {
-        sort `varlist1'
-    }
 end
