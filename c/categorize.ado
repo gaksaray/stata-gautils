@@ -1,11 +1,19 @@
-*! version 0.3  19jan2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 0.4  06may2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Create indicator variables with corresponding value labels
 *! 
 *! Syntax
 *! ------
-*!   sysuse varname [, stub(name) label(string) {base|base(#)} order_options]
+*!   categorize varname [, stub(name) label(string) {base|base(#)} order_options]
 *!
 *!      where order_options are first, last, Before(varname), and After(varname)
+*! 
+*! 
+*! Description
+*! -----------
+*!   categorize creates indicator variables based on a variable with
+*!   integer values, and automatically labels them in the form of
+*!   "variable label = value label". It is essentially a more convenient
+*!   implementation of tab, gen().
 *! 
 *! Examples
 *! --------
@@ -16,15 +24,9 @@
 
 capture program drop categorize
 program categorize
-    cap syntax varname [, stub(name local) label(string) base(numlist min=1 max=1 integer) ///
-                          first last Before(varname) After(varname)]
-    if _rc {
-        syntax varname [, stub(name local) label(string) base                              ///
-                          first last Before(varname) After(varname)]
-    }
+    syntax varname [, stub(name local) label(string) base BASE2(numlist min=1 max=1 integer) *]
     
     confirm numeric variable `varlist'
-    tab `varlist'
     
     if "`stub'" == "" {
         local stub "`varlist'"
@@ -36,29 +38,33 @@ program categorize
         else                local label "`varlist'"
     }
     
-    qui levelsof `varlist', local(ls)
+    if "`base'" != "" & "`base2'" != "" {
+        di as err "{bf:base} and {bf:base()} options cannot be specified simultaneously"
+        exit 198
+    }
     
-    if "`base'" == "base" {
-        local base = word("`ls'", 1)
+    qui levelsof `varlist', local(varlevels)
+    
+    if "`base'" != "" {
+        local baselevel = word("`varlevels'", 1)
     }
-    else if "`base'" != "" {
-        if strpos(" `ls' ", " `base' ") == 0 {
-            di as err _n "{bf:base()} options is incorrectly specified"
-            exit 198
-        }
+    else if "`base2'" != "" {
+        local baselevel = word("`varlevels'", `base2')
     }
+    
+    tab `varlist'
     
     local stublist ""
-    foreach l of local ls {
+    foreach l of local varlevels {
         confirm integer number `l'
         
         local vallab_`l' : label (`varlist') `l'
         
         local newvarlab "`label' = `vallab_`l''"
         
-        if "`l'" == "`base'" {
-            local basevarlab "`newvarlab'"
-            di _n "Base category `base' (`basevarlab') is skipped."
+        if "`l'" == "`baselevel'" {
+            local baselevellab "`newvarlab'"
+            di as txt _n `"(note: base category `baselevel' = "`vallab_`l''" is skipped.)"'
             continue
         }
         
@@ -75,9 +81,9 @@ program categorize
         order `stublist', after(`varlist')
     }
     
-    if "`base'" != "" {
+    if "`baselevel'" != "" {
         foreach stub in `stublist' {
-            note `stub': Base category: `base' (`basevarlab')
+            note `stub': Base category: `baselevel' (`baselevellab')
         }
     }
 end

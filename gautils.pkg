@@ -3,13 +3,14 @@ d 'GAUTILS': a collection of Stata utility modules
 d
 d A collection of Stata utility modules.
 d
-d Distribution-Date: 20230107
+d Distribution-Date: 20230506
 d
 d Author: Gorkem Aksaray, Trinity College Dublin
 d Support: aksarayg@tcd.ie
 d
 f gautils.sthlp
 f c/capdrop.ado
+f c/categorize.ado
 f c/clearlab.ado
 f c/compfmt.ado
 f d/dcolmat.ado

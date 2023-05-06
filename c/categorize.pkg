@@ -1,0 +1,14 @@
+v 3
+d 'CATEGORIZE': module to create indicator variables with automatic labels
+d
+d {cmd:categorize} creates indicator variables based on a variable with
+d integer values, and automatically labels them in the form of "variable
+d label = value label". It is essentially a more convenient implementation
+d of tab, gen().
+d
+d Distribution-Date: 20230506
+d
+d Author: Gorkem Aksaray, Trinity College Dublin
+d Support: aksarayg@tcd.ie
+d
+f categorize.ado
