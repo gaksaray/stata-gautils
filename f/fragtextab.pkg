@@ -1,0 +1,16 @@
+v 3
+d 'FRAGTEXTAB': module to fragmentize LaTeX tables
+d
+d {cmd:fragtextab} fragmentizes LaTeX tables exported by the collect suite
+d of commands introduced in Stata 17. It takes a .tex file and keeps
+d only the tabular section. This is useful for including a table in
+d a LaTeX document via \input{} command while also wrapping it in more
+d advanced table environments.
+d
+d Distribution-Date: 20230130
+d
+d Author: Gorkem Aksaray, Trinity College Dublin
+d Support: aksarayg@tcd.ie
+d
+f fragtextab.ado
+f fragtextab.sthlp

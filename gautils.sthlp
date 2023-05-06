@@ -45,6 +45,9 @@
 {stata which fmtstr:fmtstr}: module to reformat string variables
 
 {phang}
+{help fragtextab}: module to fragmentize a LaTeX table
+
+{phang}
 {stata which frappend:frappend}: module to append frame(s) onto current frame
 
 {phang}

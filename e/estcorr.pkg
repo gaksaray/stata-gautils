@@ -9,7 +9,7 @@ d which can then be combined into a one long table. It also returns two macros,
 d r(coeflabels) and r(mnumbers), which can be used as arguments in {cmd:esttab}
 d (or {cmd:estout}) to automatically label coefficients and number columns.
 d
-d Distribution-Date: 20210702
+d Distribution-Date: 20230111
 d
 d Author: Gorkem Aksaray, Trinity College Dublin
 d Support: aksarayg@tcd.ie

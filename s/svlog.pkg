@@ -6,7 +6,7 @@ d _current_log, and saves it with the {it:script_name} and optionally
 d (by default) a time and date stamp, to ./logs/ (or optionally
 d subdirectory/logs/) folder.
 d
-d Distribution-Date: 20220321
+d Distribution-Date: 20230228
 d
 d Author: Gorkem Aksaray, Trinity College Dublin
 d Support: aksarayg@tcd.ie
