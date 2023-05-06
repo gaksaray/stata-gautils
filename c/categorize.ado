@@ -1,5 +1,5 @@
 *! version 0.4  06may2023  Gorkem Aksaray <aksarayg@tcd.ie>
-*! Create indicator variables with corresponding value labels
+*! Create indicator variables with automatic variable labels
 *! 
 *! Syntax
 *! ------
