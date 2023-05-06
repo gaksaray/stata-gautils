@@ -2,4 +2,5 @@ v 3
 d S-directory
 
 p stpiece2 module to estimate piecewise-constant exponential model
+p styletextab module to style LaTeX tables exported by the collect suite of commands
 p svlog module to save logs to /logs/ folder with time and date stamp

@@ -90,6 +90,9 @@
 {help stpiece2}: module to estimate piecewise-constant exponential model
 
 {phang}
+{help styletextab}: module to style LaTeX tables exported by the collect suite of commands
+
+{phang}
 {help svlog}: module to save logs to /logs/ folder with time and date stamp
 
 {phang}

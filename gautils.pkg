@@ -47,6 +47,8 @@ f r/reshape2l.sthlp
 F r/test.do
 f s/stpiece2.ado
 f s/stpiece2.sthlp
+f s/styletextab.ado
+f s/styletextab.sthlp
 f s/svlog.ado
 f s/svlog.sthlp
 f u/uniqueby.ado
