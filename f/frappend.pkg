@@ -3,7 +3,7 @@ d 'FRAPPEND': module to append frame(s) onto current frame
 d
 d {cmd:frappend} appends specified frames onto current frame.
 d
-d Distribution-Date: 20220120
+d Distribution-Date: 20230516
 d
 d Author: Gorkem Aksaray, Trinity College Dublin
 d Support: aksarayg@tcd.ie

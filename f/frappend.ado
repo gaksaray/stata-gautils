@@ -1,4 +1,4 @@
-*! version 1.1  20jan2022  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.2  16may2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Append frame(s) onto current frame
 *!
 *! Syntax
@@ -25,6 +25,8 @@
 *!
 *! Changelog
 *! ---------
+*!   [1.2]
+*!     sortpreserve option added.
 *!   [1.1]
 *!     Bug fix: skip input frame when it's the same as current frame.
 *!     Changed version requirement to Stata 16.
@@ -34,7 +36,11 @@
 capture program drop frappend
 program define frappend
     version 16
-    syntax namelist(name=frlist id="frame list")
+    syntax namelist(name=frlist id="frame list") [, SORTpreserve]
+    
+    if "`sortpreserve'" != "" {
+        local sortvars : sortedby
+    }
     
     foreach fr of local frlist {
         confirm frame `fr'
@@ -49,5 +55,9 @@ program define frappend
         }
         
         append using "`to_be_appended'"
+    }
+    
+    if "`sortpreserve'" != "" & "`sortvars'" != "" {
+        sort `sortvars'
     }
 end
