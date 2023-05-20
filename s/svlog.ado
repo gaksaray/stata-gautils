@@ -1,4 +1,4 @@
-*! version 0.1.2  28feb2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 0.1.3  21may2023  Gorkem Aksaray <aksarayg@tcd.ie>
 
 capture program drop svlog
 program define svlog
@@ -48,7 +48,7 @@ end
 
 capture program drop _log
 program _log, rclass
-    syntax anything(name=script id="script") [, noDT clear dir(string)]
+    syntax anything(name=script id="script") [, noDT noUN clear dir(string)]
     
     capture log close _current_log
     
@@ -65,14 +65,15 @@ program _log, rclass
         _logclear `script', dir(`dir')
     }
     
-    local datetime : di %tcCCYY-NN-DD!_HH.MM.SS `=clock("$S_DATE $S_TIME", "DMYhms")'
-    local username = c(username)
+    local logfile "`logdir'/`script'"
     
     if "`dt'" != "nodt" {
-        local logfile "`logdir'/`script'_`datetime'_`username'"
+        local datetime : di %tcCCYY-NN-DD!_HH.MM.SS `=clock("$S_DATE $S_TIME", "DMYhms")'
+        local logfile "`logfile'_`datetime'"
     }
-    else {
-        local logfile "`logdir'/`script'"
+    if "`un'" != "noun" {
+        local username = c(username)
+        local logfile "`logfile'_`username'"
     }
     
     log using "`logfile'.smcl", replace name(_current_log) nomsg
