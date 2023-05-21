@@ -35,8 +35,8 @@
 {synopthdr}
 {synoptline}
 {* syntab:tab}{...}
-{synopt:[{opt no}]{opt td}}do not write time and date stamp to log file; {opt td} is default{p_end}
-{synopt:[{opt no}]{opt un}}do not write username to log file; {opt un} is default{p_end}
+{synopt:[{opt no}]{opt td}}do not add time and date to log filename; {opt td} is default{p_end}
+{synopt:[{opt no}]{opt un}}do not add username (provided by the operating system) of the user currently using Stata to log filename; {opt un} is default{p_end}
 {synopt:{opt clear}}run {opt svlog clear} before opening log file{p_end}
 {synopt:{opt dir(subdirectory)}}locate and save /logs/ folder within the subdirectory{p_end}
 {synopt:{opt view}}view the log file immediately after it is closed{p_end}
@@ -58,13 +58,13 @@ to ./logs/ (or optionally {it:subdirectory}/logs/) folder.
 
 {pstd}
 {cmd:svlog clear} clears the /logs/ folder from the log files with names including {it:script_name}.
-If {it:script_name} is omitted, it clears all logs in the /logs/ (or {it:subdirectory}/logs/) folder.
+If {it:script_name} is omitted, it deletes all logs in the /logs/ (or {it:subdirectory}/logs/) folder.
 
 
 {title:Remarks}{marker remarks}
 
 {pstd}
-Usual {cmd:log} commands such as {cmd:log off}{c |}{cmd:on} or {cmd:log query} can be used within a script.
+Usual {cmd:log} commands such as {cmd:log off}{c |}{cmd:on} or {cmd:log query} can be used within a script along with {cmd:svlog}.
 
 
 {title:Author}{marker author}
