@@ -15,6 +15,9 @@
 {stata which capdrop:capdrop}: module to drop a list of variables without an error
 
 {phang}
+{stata which categorize:categorize} module to create indicator variables with automatic labels
+
+{phang}
 {stata which clearlab:clearlab}: module to clear all labels and notes
 
 {phang}
