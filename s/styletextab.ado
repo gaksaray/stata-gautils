@@ -1,10 +1,10 @@
-*! version 0.1  06may2023  Gorkem Aksaray <aksarayg@tcd.ie>
-*! Style LaTeX tables exported by the collect suite of commands
+*! version 1.0  04jul2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! Restyle LaTeX tables exported by the collect suite of commands
 *! 
 *! Changelog
 *! ---------
-*!   [0.1]
-*!     - Initial version.
+*!   [1.0]
+*!     - Initial public release.
 
 capture program drop styletextab
 program styletextab, rclass

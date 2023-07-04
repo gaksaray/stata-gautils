@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.1  06may2023}{...}
+{* *! version 1.0  04jul2023}{...}
 {viewerjumpto "Syntax" "styletextab##syntax"}{...}
 {viewerjumpto "Description" "styletextab##description"}{...}
 {viewerjumpto "Options" "styletextab##options"}{...}
@@ -13,7 +13,7 @@
 {title:Title}
 
 {phang}
-{bf:styletextab} {hline 2} Style LaTeX tables exported by the collect suite of commands
+{bf:styletextab} {hline 2} Restyle LaTeX tables exported by the collect suite of commands
 
 
 {marker syntax}{...}
@@ -40,30 +40,29 @@
 {title:Description}
 
 {pstd}
-{cmd:styletextab} improves the look of default LaTeX tables
-exported by the {cmd:collect} suite of commands
-by integrating more advanced LaTeX packages such as
+{cmd:styletextab} improves the appearance and formatting of default LaTeX tables
+exported by the {cmd:collect} suite of commands.
+It integrates advanced LaTeX packages such as
 {browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/booktabs/booktabs.pdf":booktabs} (for better vertical spacing around horizontal rules),
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/threeparttable/threeparttable.pdf":threeparttable} (for better formatting of table notes), and
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/pdflscape/pdflscape.pdf":pdflscape} (for landscape tables).
+{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/threeparttable/threeparttable.pdf":threeparttable} (for refined formatting of table notes), and
+{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/pdflscape/pdflscape.pdf":pdflscape} (for landscape tables accommodating wider data displays).
 
 {pstd}
-The usual workflow involves running {cmd:styletextab}
-right after {cmd:collect} exports, although not necessarily.
-{cmd:styletextab} can edit any .tex file specified by {opt using} option
-and save to any .tex file specified by {opt saving()} option.
-File suffixes are optional (.tex is assumed).
-If {opt using} option is omitted,
-{cmd:styletextab} assumes that you want to convert the most recent LaTeX table exported.
-If {opt saving} option is omitted,
-{cmd: styletextab} assumes that you want to overwrite.
+Typically, {cmd:styletextab} is executed immediately after {cmd:collect} exports.
+However, it can also be applied to any .tex file specified by the {opt using} option.
+It can save the output to any .tex file specified by the {opt saving()} option.
+The file suffixes are optional, as .tex is assumed by default.
+If the {opt using} option is not provided,
+{cmd:styletextab} assumes the intention to modify the most recently exported LaTeX table.
+Similarly, if the {opt saving} option is omitted,
+{cmd: styletextab} assumes the intention to overwrite the original file.
 
 
 {marker options}{...}
 {title:Options}
 
 {phang}
-{cmd:tableonly} keeps the {it:table} section only:
+{cmd:tableonly} keeps the {it:table} section only (and discards the rest):
 
 {p 8 8 2} {it:\begin{tabular}} {p_end}
 {p 8 8 2} ... {p_end}
@@ -72,7 +71,7 @@ If {opt saving} option is omitted,
 {p 8 8 2} The resulting .tex file can be included in a LaTeX document via {bf:\input} macro.
 
 {phang}
-{cmd:fragment} keeps the {it:tabular} section only:
+{cmd:fragment} keeps the {it:tabular} section only (and discards the rest):
 
 {p 8 8 2} {it:\begin{table}[!h]} {p_end}
 {p 8 8 2} ... {p_end}
@@ -90,49 +89,51 @@ If {opt saving} option is omitted,
 {cmd:lscape} invokes LaTeX's {bf:pdflscape} package to wrap the table in a landscape layout. This makes it easier to view tables that are too wide to fit in a portait page (for example, regression comparison tables with more than 5-6 models).
 
 {phang}
-{cmd:beforetext(}string{cmd:)} and {cmd:aftertext(}string{cmd:)} add separate lines of text before and after the table (only relevant if {opt fragment} and {opt tableonly} options are not specified).
+{cmd:beforetext(}string{cmd:)} and {cmd:aftertext(}string{cmd:)} add separate lines of text before and after the table (relevant only if {opt fragment} and {opt tableonly} options are omitted).
 
 
 {marker remarks}{...}
 {title:Remarks}
 
 {pstd}
-Stata 17 introduced {cmd:collect} suite of commands
-({help collect}, {help table}, {help etable}, and, with version 18, {help dtable}),
+Stata 17 introduced the {cmd:collect} suite of commands
+({help collect}, {help table}, {help etable}, and, as of version 18, {help dtable}),
 all of which can {help collect export:export} tables as LaTeX files.
 By default, the output is a standalone compilable document.
 {help collect_export##tex_opttbl:TeX export options} include {opt tableonly}
 for exporting only the {it:table} environment,
-which can be included in a LaTeX document via {bf:\input} macro.
+which can be included in a LaTeX document using the {bf:\input} macro.
 Additionally, {help collect_style_tex##syntax:TeX style options} include
-{opt begintable} for specifying whether to use {it:table} environment
-(or to keep the {it:tabular} environment only)
+{opt begintable} for specifying whether to use the {it:table} environment
+or retain only the tabular environment,
 and {opt centering} for specifying whether to center table horizontally
-on the page via {bf:\centering}.
-Although one can always produce a fragment (i.e., {it:tabular}-only) table
+on the page using the {bf:\centering} macro.
+Although it is possible to produce a fragment (i.e., {it:tabular}-only) table
 and wrap it in a custom table environment in a separate document,
-the default standalone document mode is useful for
-quickly inspecting the look of the LaTeX tables.
+the default standalone document mode is convenient for
+quickly assessing the appearance of the LaTeX tables.
 
 {pstd}
-However, the default output has several basic visual flaws:
+However, the default output of the {cmd:collect} suite of commands
+has several basic visual imperfections:
 horizontal lines are drawn by {bf:\cline},
 footnotes are centered by default and do not have the same width as the table,
 and there is no option to rotate the table.
-{cmd:styletextab}, by default, improves exported LaTeX tables
-by replacing {bf:\cline} with the nicer-looking {bf:\cmidrule} of the
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/booktabs/booktabs.pdf":booktabs} package, and
-by wrapping footnotes within the {bf:\tablenotes} environment of the
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/threeparttable/threeparttable.pdf":threeparttable} package.
-Optionally, it can rotate tables (i.e., switches to landscape layout)
+{cmd:styletextab}, by default, addresses these issues.
+It replaces {bf:\cline} with the {bf:\cmidrule} of the
+{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/booktabs/booktabs.pdf":booktabs} package for aesthetically pleasing horizontal spacing.
+It also wraps footnotes within the {bf:\tablenotes} environment of the
+{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/threeparttable/threeparttable.pdf":threeparttable} package for proper formatting.
+Additionally, {cmd:styletextab} offers an option to rotate tables
+(i.e., switch to landscape layout)
 by wrapping tables within the {bf:\landscape} environment of
 {browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/pdflscape/pdflscape.pdf":pdflscape} package.
 
 {pstd}
-{cmd:styletextab} works by dividing a .tex table file into its sections,
-and uses {help file} commands to reformat it to improve their look.
-An advantage of {cmd:styletextab} is that it can go from one mode
-to another without creating the table from scratch.
+{cmd:styletextab} operates by dissecting a .tex table file into its constituent sections
+and utilizes {help file} commands to reformat and improve the look of the tables.
+An advantage of {cmd:styletextab} is its ability to transition seamlessly between
+different modes without the need to recreate the table from scratch.
 
 
 {marker examples}{...}
