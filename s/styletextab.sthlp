@@ -100,6 +100,7 @@ The default is to insert {bf:geometry} package by itself without any option. Alt
 {cmd:lipsum}[{cmd:(}{it:pkgopts}{cmd:)}] invokes LaTeX's
 {browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/lipsum/lipsum.pdf":lipsum}
 package to produce dummy text in {opt beforetext()} and {opt aftertext()}.
+This is useful for simulating content around a table to visualize how it would appear within a document.
 The default is to insert {bf:lipsum} package by itself without any option. Alternatively, use {it:pkgopts} to specify package options.
 
 {phang}
@@ -195,11 +196,11 @@ different modes without the need to recreate the table from scratch.
 
 {pstd}Keep the {it:table} environment only:{p_end}
 {phang}{cmd:. styletextab, tableonly}{p_end}
-{pstd}{it:(going back to standalone document from mytable.tex would keep caption and footnotes)}
+{pstd}{it:(going back to the standalone document format from mytable.tex would retain the caption and footnotes)}
 
 {pstd}Keep the {it:tabular} environment only:{p_end}
 {phang}{cmd:. styletextab, fragment}{space 1}{p_end}
-{pstd}{it:(going back to standalone document from mytable.tex would not include caption and footnotes)}
+{pstd}{it:(going back to the standalone document format from mytable.tex would discard the caption and footnotes)}
 
 
 {marker author}{...}
