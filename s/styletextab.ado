@@ -1,8 +1,11 @@
-*! version 1.2  02oct2023  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.2.1  09oct2023  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Restyle LaTeX tables exported by the collect suite of commands
 *! 
 *! Changelog
 *! ---------
+*!   [1.2.1]
+*!     - Automatic conversion of hyphens as minus signs to en dashes in math
+*!       mode to ensure proper typographic representation.
 *!   [1.2]
 *!     - Added usepackage() option to add LaTeX packages to the preamble.
 *!     - geometry and lipsum options are removed as they are now redundant with
@@ -115,7 +118,7 @@ program styletextab, rclass
         forvalues i = 0/`repeated_option_maxcount' {
             if `"`usepackage`i''"' != "" {
                 local 0 `"`usepackage`i''"'
-                syntax name(name=pkgname id="package name") [, opt(string) opts(string) pre NEXTLines(string asis)]
+                syntax name(name=pkgname id="package name") [, opt(string) opts(string) pre Nextlines(string asis)]
                 if "`pre'" == "" {
                     continue
                 }
@@ -171,7 +174,7 @@ program styletextab, rclass
         forvalues i = 0/`repeated_option_maxcount' {
             if `"`usepackage`i''"' != "" {
                 local 0 `"`usepackage`i''"'
-                syntax name(name=pkgname id="package name") [, opt(string) opts(string) pre NEXTLines(string asis)]
+                syntax name(name=pkgname id="package name") [, opt(string) opts(string) pre Nextlines(string asis)]
                 if "`pre'" != "" {
                     continue
                 }
@@ -276,6 +279,13 @@ program styletextab, rclass
             }
             else if "`booktabs'" != "nobooktabs" & strpos(`"`macval(line)'"', "\cline") != 0 {
                 local newline = subinstr(`"`macval(line)'"', "\cline", "\cmidrule", .)
+                file write `tf' `"`newline'"' _n
+            }
+            else if regexm(`"`macval(line)'"', "\\multicolumn{([0-9])}{([|]?[clr][|]?)}{-([^\}]*)}") {
+                local newline = ///
+                    regexreplaceall(`"`macval(line)'"', ///
+                                    "\\multicolumn{[0-9]}{[|]?[clr][|]?}{-[^\}]*}", ///
+                                    "\\multicolumn{"+regexs(1)+"}{"+regexs(2)+"}{\\$-\\$"+regexs(3)+"}")
                 file write `tf' `"`newline'"' _n
             }
             else {
