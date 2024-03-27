@@ -20,7 +20,7 @@
 {p 8 17 2}
 {cmd:svlog}
 {it:script_name}
-[{cmd:,} {opt notd} {opt noun} {opt clear} {opt dir(subdirectory)}]
+[{cmd:,} {opt nodt} {opt noun} {opt clear} {opt dir(subdirectory)}]
 
 {p 8 17 2}
 {cmd:svlog close}
@@ -35,7 +35,7 @@
 {synopthdr}
 {synoptline}
 {* syntab:tab}{...}
-{synopt:[{opt no}]{opt td}}do not add time and date to log filename; {opt td} is default{p_end}
+{synopt:[{opt no}]{opt dt}}do not add date and time to log filename; {opt td} is default{p_end}
 {synopt:[{opt no}]{opt un}}do not add username (provided by the operating system) of the user currently using Stata to log filename; {opt un} is default{p_end}
 {synopt:{opt clear}}run {opt svlog clear} before opening log file{p_end}
 {synopt:{opt dir(subdirectory)}}locate and save /logs/ folder within the subdirectory{p_end}
