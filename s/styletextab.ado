@@ -4,19 +4,19 @@
 *! Changelog
 *! ---------
 *!   [1.2.2]
-*!     - usepackage() option when specified with LaTeX package names that do not
-*!       satisfy the naming convention of Stata (e.g., unicode-math) was causing
-*!       error. This is now fixed.
+*!     - usepackage() option when specified with LaTeX package names that
+*!       do not satisfy the naming convention of Stata (e.g., unicode-math)
+*!       was causing error. This is now fixed.
 *!   [1.2.1]
 *!     - Automatic conversion of hyphens as minus signs to en dashes in math
 *!       mode to ensure proper typographic representation.
 *!   [1.2]
 *!     - Added usepackage() option to add LaTeX packages to the preamble.
-*!     - geometry and lipsum options are removed as they are now redundant with
-*!       the addition of usepackage() option.
+*!     - geometry and lipsum options are removed as they are now redundant
+*!       with the addition of usepackage() option.
 *!     - beforetext() and aftertext() options can now add multiple lines
-*!       delimited by quotation marks. They also automatically define \sq{} and
-*!       \dq{} macros for single and double quotes used within text.
+*!       delimited by quotation marks. They also automatically define \sq{}
+*!       and \dq{} macros for single and double quotes used within text.
 *!     - Better handling of repeatable options.
 *!   [1.1]
 *!     - Allow for multiple paragraphs of text before and after table.
@@ -122,7 +122,8 @@ program styletextab, rclass
         forvalues i = 0/`repeated_option_maxcount' {
             if `"`usepackage`i''"' != "" {
                 local 0 `"`usepackage`i''"'
-                syntax anything(name=pkgname id="package name") [, opt(string) opts(string) pre Nextlines(string asis)]
+                syntax anything(name=pkgname id="package name") [, ///
+                    opt(string) opts(string) pre Nextlines(string asis)]
                 if "`pre'" == "" {
                     continue
                 }
@@ -178,7 +179,8 @@ program styletextab, rclass
         forvalues i = 0/`repeated_option_maxcount' {
             if `"`usepackage`i''"' != "" {
                 local 0 `"`usepackage`i''"'
-                syntax anything(name=pkgname id="package name") [, opt(string) opts(string) pre Nextlines(string asis)]
+                syntax anything(name=pkgname id="package name") [, ///
+                    opt(string) opts(string) pre Nextlines(string asis)]
                 if "`pre'" != "" {
                     continue
                 }
