@@ -27,8 +27,8 @@
 {synoptset 28}{...}
 {synopthdr}
 {synoptline}
-{synopt:{opt frag:ment}}keep only the LaTeX {it:tabular} environment{p_end}
 {synopt:{opt table:only}}keep only the LaTeX {it:table} environment{p_end}
+{synopt:{opt frag:ment}}keep only the LaTeX {it:tabular} environment{p_end}
 {synopt:[{cmd:no}]{opt book:tabs}}specify whether to use LaTeX booktabs rules (default is {opt booktabs}){p_end}
 {synopt:{opth lab:el(styletextab##marker:marker)}}label the table for cross-referencing{p_end}
 {synopt:{opt ls:cape}}wrap the table in a LaTeX {it:landscape} environment{p_end}
@@ -102,18 +102,18 @@ Similarly, if the {opt saving()} option is omitted,
 {phang}
 {cmd:tableonly} keeps the {it:table} section only (and discards the rest):
 
-{p 8 8 2} {it:\begin{tabular}} {p_end}
+{p 8 8 2} {it:\begin{table}[!h]} {p_end}
 {p 8 8 2} ... {p_end}
-{p 8 8 2} {it:\end{tabular}} {p_end}
+{p 8 8 2} {it:\end{table}} {p_end}
 
 {p 8 8 2} The resulting .tex file can be included in a LaTeX document via {bf:\input} macro.
 
 {phang}
 {cmd:fragment} keeps the {it:tabular} section only (and discards the rest):
 
-{p 8 8 2} {it:\begin{table}[!h]} {p_end}
+{p 8 8 2} {it:\begin{tabular}} {p_end}
 {p 8 8 2} ... {p_end}
-{p 8 8 2} {it:\end{table}} {p_end}
+{p 8 8 2} {it:\end{tabular}} {p_end}
 
 {p 8 8 2} The resulting .tex file can be manually wrapped inside a custom {it:table} environment in a LaTeX document via {bf:\input} macro. {p_end}
 
