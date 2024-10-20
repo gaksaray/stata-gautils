@@ -121,11 +121,11 @@ program styletextab, rclass
     }
     
     capture assert ///
-        inlist("`papersize'", "a0", "a1", "a2", "a3", "a4", "a5", "a6")         | ///
-        inlist("`papersize'", "b0", "b1", "b2", "b3", "b4", "b5", "b6")         | ///
-        inlist("`papersize'", "c0", "c1", "c2", "c3", "c4", "c5", "c6")         | ///
-        inlist("`papersize'", "b0j", "b1j", "b2j", "b3j", "b4j", "b5j", "b6j")  | ///
-        inlist("`papersize'", "ansia", "ansib", "ansic", "ansid", "ansie")      | ///
+        inlist("`papersize'", "a0", "a1", "a2", "a3", "a4", "a5", "a6")        | ///
+        inlist("`papersize'", "b0", "b1", "b2", "b3", "b4", "b5", "b6")        | ///
+        inlist("`papersize'", "c0", "c1", "c2", "c3", "c4", "c5", "c6")        | ///
+        inlist("`papersize'", "b0j", "b1j", "b2j", "b3j", "b4j", "b5j", "b6j") | ///
+        inlist("`papersize'", "ansia", "ansib", "ansic", "ansid", "ansie")     | ///
         inlist("`papersize'", "letter", "executive", "legal", "")
     if _rc == 9 {
         di as err "{p 0 0 2}"
