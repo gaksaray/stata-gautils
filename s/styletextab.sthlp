@@ -348,7 +348,7 @@ mode without needing to re-export the table at each step.
 {phang}{cmd:> {space 11}"These regressions are very interesting." \lipsum[1]){space 1} ///}{p_end}
 {phang}{cmd:> {space 4}before(Let's see how \dq{they} look:){space 24} ///}{p_end}
 {phang}{cmd:> {space 4}after(This text comes after Table~\ref{fig:reg1}. \lipsum[2]) ///}{p_end}
-{phang}{cmd:> {space 4}after(\lipsum[3])}{p_end}
+{phang}{cmd:> {space 4}after(\lipsum[3]) {space 43} ///}{p_end}
 {phang}{cmd:> {space 4}inject(2 , n("\textbf{DV:} & \multicolumn{4}{c}{Price} \\" {space 2} ///}{p_end}
 {phang}{cmd:> {space 17}"\cmidrule{2-5}")) {space 29} ///}{p_end}
 {phang}{cmd:> {space 4}inject(4 , n("\hspace{-.5em}\textit{Main IV:} \\[.5em]")) {space 3} ///}{p_end}
