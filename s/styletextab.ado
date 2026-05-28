@@ -1,8 +1,13 @@
-*! version 1.4.0 11oct2024  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.5.0 28may2026  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Restyle LaTeX tables exported by the collect suite of commands
 *! 
 *! Changelog
 *! ---------
+*!   [1.5.0]
+*!     - Added standalone option to use the standalone document class instead
+*!       of article. This is now the default for tableonly and fragment modes.
+*!       The output is cropped to the table and can be compiled directly.
+*!     - Specifying both tableonly and fragment now returns an error.
 *!   [1.4.0]
 *!     - Added inject() option to inject lines of LaTeX code after any row
 *!       within the tabular environment.
@@ -49,11 +54,12 @@ program styletextab, rclass
     
     syntax [using/] [,                                      ///
                      SAVing(string asis)                    ///
-                     FRAGment                               ///
                      TABLEonly                              ///
-                     LScape                                 ///
+                     FRAGment                               ///
+                     noSTANDalone                           ///
                      noBOOKtabs                             ///
                      LABel(string)                          ///
+                     LScape                                 ///
                      `usepackage'                           ///
                      `beforetext'                           ///
                      `aftertext'                            ///
@@ -120,6 +126,21 @@ program styletextab, rclass
         exit 198
     }
     
+    if "`fragment'" != "" & "`tableonly'" != "" {
+        di as err "options {bf:fragment} and {bf:tableonly} may not be combined"
+        exit 198
+    }
+    if "`fragment'" != "" & "`lscape'" != "" {
+        di as err "options {bf:fragment} and {bf:lscape} may not be combined"
+        exit 198
+    }
+    if "`standalone'" == "nostandalone" {
+        if "`fragment'" == "" & "`tableonly'" == "" {
+            di as err "option {bf:nostandalone} must be combined with either {bf:tableonly} or {bf:fragment}"
+            exit 198
+        }
+    }
+    
     capture assert ///
         inlist("`papersize'", "a0", "a1", "a2", "a3", "a4", "a5", "a6")        | ///
         inlist("`papersize'", "b0", "b1", "b2", "b3", "b4", "b5", "b6")        | ///
@@ -151,18 +172,25 @@ program styletextab, rclass
     file open `fh' using `"`using'"', read
     file open `tf' using `"`tmp'"', write
     
-    if "`fragment'" == "" {
-    if "`tableonly'" == "" {
+    if "`standalone'" != "nostandalone" { // !nostandalone: start
     
     * preamble
-    if "`pt'" != "" {
-        local pt "`pt'pt"
+    if "`fragment'" == "" & "`tableonly'" == "" {
+        if "`pt'" != "" {
+            local pt "`pt'pt"
+        }
+        if "`papersize'" != "" {
+            local papersize "`papersize'paper"
+        }
+        local docclass "article"
+        local docclass_opts = subinstr(`"`= strtrim("`pt' `papersize'")'"', " ", ",", .)
     }
-    if "`papersize'" != "" {
-        local papersize "`papersize'paper"
+    else if "`fragment'" != "" | "`tableonly'" != "" {
+        local docclass "standalone"
+        local docclass_opts "varwidth"
     }
-    local docclassopts = subinstr(`"`= strtrim("`pt' `papersize'")'"', " ", ",", .)
-    file write `tf' "\documentclass[`docclassopts']{article}" _n
+    file write `tf' "\documentclass[`docclass_opts']{`docclass'}" _n
+    
     if `"`usepackage0'"' != "" {
         forvalues i = 0/`repeated_option_maxcount' {
             if `"`usepackage`i''"' != "" {
@@ -266,12 +294,19 @@ program styletextab, rclass
             }
         }
     }
+    
+    if  "`docclass'" == "article" {
+        
     if `"`beforetext0'`aftertext0'"' != "" {
         file write `tf' "\newcommand{\sq}[1]{\`#1'}" _n
         file write `tf' "\newcommand{\dq}[1]{\`\`#1''}" _n
     }
     
+    }
+    
     file write `tf' "\begin{document}" _n
+    
+    if  "`docclass'" == "article" {
     
     * beforetext
     if `"`beforetext0'"' != "" {
@@ -288,9 +323,18 @@ program styletextab, rclass
         file write `tf' _n
     }
     
-    } // tableonly
+    }
+    
+    } // !nostandalone: end
+    if "`fragment'" == "" { // !fragment: start
+    
     if "`lscape'" != "" {
-        file write `tf' "\begin{landscape}" _n
+        if  "`docclass'" == "article" {
+            file write `tf' "\begin{landscape}" _n
+        }
+        else if "`docclass'" == "standalone" {
+            file write `tf' "\IfStandalone{}{\begin{landscape}}"
+        }
     }
     file write `tf' "\begin{table}[!h]" _n
     if "`tabsize'" != "" {
@@ -316,7 +360,7 @@ program styletextab, rclass
     
     file write `tf' "\begin{threeparttable}" _n
     
-    } // fragment
+    } // !fragment: end
     
     * tabular
     file seek `fh' tof
@@ -378,7 +422,7 @@ program styletextab, rclass
         file read `fh' line
     }
     
-    if "`fragment'" == "" {
+    if "`fragment'" == "" { // !fragment: start
     
     file write `tf' "\begin{tablenotes}" _n
     
@@ -403,10 +447,15 @@ program styletextab, rclass
     file write `tf' "\end{threeparttable}" _n
     file write `tf' "\end{table}" _n
     if "`lscape'" != "" {
-        file write `tf' "\end{landscape}" _n
+        if  "`docclass'" == "article" {
+            file write `tf' "\end{landscape}" _n
+        }
+        else if "`docclass'" == "standalone" {
+            file write `tf' "\IfStandalone{}{\end{landscape}}"
+        }
     }
     
-    if "`tableonly'" == "" {
+    if "`tableonly'" == "" { // !tableonly: start
     
     * aftertext
     if `"`aftertext0'"' != "" {
@@ -423,10 +472,12 @@ program styletextab, rclass
         file write `tf' _n
     }
     
-    file write `tf' "\end{document}" _n
+    } // !tableonly: end
+    } // !fragment: end
     
-    } // tableonly
-    } // fragment
+    if "`standalone'" != "nostandalone" {
+        file write `tf' "\end{document}" _n
+    }
     
     file close `fh'
     file close `tf'

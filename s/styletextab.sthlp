@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 1.4.0  11oct2024}{...}
+{* *! version 1.5.0  28may2026}{...}
 {viewerjumpto "Syntax" "styletextab##syntax"}{...}
 {viewerjumpto "Description" "styletextab##description"}{...}
 {viewerjumpto "Options" "styletextab##options"}{...}
@@ -22,27 +22,30 @@
 {p 8 16 2}
 {cmd: styletextab}
 [{cmd:using} {it:{help filename}}]
-[{cmd:,} {cmd:saving(}{it:filename} [{cmd:,} {opt replace}]{cmd:)} {it:options}]
+[{cmd:,} {cmd:saving(}{it:filename} [{cmd:,} {opt replace}]{cmd:)}
+{it:{help styletextab##options_table:options}}]
 
 {synoptset 28}{...}
+{marker options_table}{...}
 {synopthdr}
 {synoptline}
 {synopt:{opt table:only}}keep only the LaTeX {it:table} environment{p_end}
 {synopt:{opt frag:ment}}keep only the LaTeX {it:tabular} environment{p_end}
-{synopt:[{cmd:no}]{opt book:tabs}}specify whether to use LaTeX booktabs rules (default is {opt booktabs}){p_end}
+{synopt:[{cmd:no}]{opt stand:alone}}use {it:standalone} LaTeX class rather than {it:article} (default is {opt standalone}){p_end}
+{synopt:[{cmd:no}]{opt book:tabs}}use LaTeX booktabs rules (default is {opt booktabs}){p_end}
 {synopt:{opth lab:el(styletextab##marker:marker)}}label the table for cross-referencing{p_end}
 {synopt:{opt ls:cape}}wrap the table in a LaTeX {it:landscape} environment{p_end}
-{synopt:{cmdab:usep:ackage(}{help styletextab##usepackage:{it:pkg}}[{cmd:,} {help styletextab##pkgopts:{it:pkg_opts}}]{cmd:)}}load a LaTeX package{p_end}
+{synopt:{cmdab:usep:ackage(}{help styletextab##usepackage:{it:pkg}}[{cmd:,} {help styletextab##pkg_opts:{it:pkg_opts}}]{cmd:)}}load a LaTeX package{p_end}
 {synopt:{cmdab:before:text(}{it:strlist}{cmd:)}}add text before table{p_end}
 {synopt:{cmdab:after:text(}{it:strlist}{cmd:)}}add text after table{p_end}
 {synopt:{cmd:pt(}{it:#}{cmd:)}}set the size of the main font used in the document{p_end}
 {synopt:{cmdab:paper:size(}{it:papersize}{cmd:)}}set the paper size{p_end}
 {synopt:{cmdab:tabs:ize(}{it:fontsize}{cmd:)}}set the size of the font used in the table{p_end}
-{synopt:{cmdab:inj:ect(}{help styletextab##rownum:{it:rownum}}{cmd:,} {help styletextab##injectopts:{it:inject_opts}}{cmd:)}}inject lines of LaTeX code within the {it:tabular} environment{p_end}
+{synopt:{cmdab:inj:ect(}{help styletextab##rownum:{it:rownum}}{cmd:,} {help styletextab##inject_opts:{it:inject_opts}}{cmd:)}}inject lines of LaTeX code within the {it:tabular} environment{p_end}
 {synoptline}
 
 {synoptset 28}{...}
-{marker pkgopts}{...}
+{marker pkg_opts}{...}
 {synopthdr:pkg_opts}
 {synoptline}
 {synopt:{opth opt:(styletextab##optlist:optlist)}|{opt opts(optlist)}}specify the list of options for the LaTeX package loaded{p_end}
@@ -51,7 +54,7 @@
 {synoptline}
 
 {synoptset 28}{...}
-{marker injectopts}{...}
+{marker inject_opts}{...}
 {synopthdr:inject_opts}
 {synoptline}
 {synopt:{cmdab:n:extlines(}{it:strlist}{cmd:)}}add line(s) of LaTeX code after the specified row number{p_end}
@@ -105,9 +108,9 @@ For example, in a {it:tabular} environment with 16 lines of code in the form
 {cmd:styletextab} improves the appearance and formatting of default LaTeX tables
 exported by the {cmd:collect} suite of commands.
 It integrates advanced LaTeX packages such as
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/booktabs/booktabs.pdf":booktabs} (for better vertical spacing around horizontal rules),
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/threeparttable/threeparttable.pdf":threeparttable} (for refined formatting of table notes), and
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/pdflscape/pdflscape.pdf":pdflscape} (for landscape tables accommodating wider data displays).
+{browse "https://ctan.org/pkg/booktabs":booktabs} (for better vertical spacing around horizontal rules),
+{browse "https://ctan.org/pkg/threeparttable":threeparttable} (for refined formatting of table notes), and
+{browse "https://ctan.org/pkg/pdflscape":pdflscape} (for landscape tables accommodating wider data displays).
 
 {pstd}
 Typically, {cmd:styletextab} is executed immediately after {cmd:collect} exports.
@@ -142,6 +145,17 @@ Similarly, if the {opt saving()} option is omitted,
 {p 8 8 2} The resulting .tex file can be manually wrapped inside a custom {it:table} environment in a LaTeX document via {bf:\input} macro. {p_end}
 
 {phang}
+[{cmd:no}]{cmd:standalone} is only relevant when either {cmd:tableonly} or {cmd:fragment} is specified.
+It uses the {browse "https://ctan.org/pkg/standalone":{bf:standalone}} document class instead of {bf:article}
+to make the {it:table} environment (if {cmd:tableonly} is specified) or the {it:tabular} environment (if {cmd:fragment} is specified)
+directly compilable on its own.
+
+{pmore}
+{cmd:standalone} is the default default mode for {cmd:tableonly} and {cmd:fragment} unless {cmd:nostandalone} is specified.
+If the resulting .tex file is included in a LaTeX document via {bf:\input} macro,
+the {bf:standalone} package must be loaded in that document's preamble via {bf:\usepackage{standalone}}.
+
+{phang}
 [{cmd:no}]{cmd:booktabs} replaces the default {bf:\cline} with the {bf:\cmidrule} macro from LaTeX's {bf:booktabs} package.
 
 {phang}
@@ -152,23 +166,23 @@ Similarly, if the {opt saving()} option is omitted,
 
 {marker usepackage}{...}
 {phang}
-{cmd:usepackage(}{it:pkg}[{cmd:,} {help styletextab##pkgopts:{it:pkg_opts}}]{cmd:)} specifies a LaTeX package to be included in the document. {cmd:usepackage()} may be specified multiple times to add packages in the specified order.
+{cmd:usepackage(}{it:pkg}[{cmd:,} {help styletextab##pkg_opts:{it:pkg_opts}}]{cmd:)} specifies a LaTeX package to be included in the document. {cmd:usepackage()} may be specified multiple times to add packages in the specified order.
 
-{phang2}
+{pmore}
 {it:pkg_opts} are
 {opth opt:(styletextab##optlist:optlist)} or {opt opts(optlist)},
 {opt pre}, and
 {opt nextlines(strlist)}.
 
-{phang3}
+{phang2}
 {opt opt(optlist)} specifies the set of options for the LaTeX package loaded.
 {opt opts()} is the multiline version of {cmd:opt()}, putting each option to its own line,
 which is useful for quickly commenting and uncommenting distinct options to observe their effects.
 
-{phang3}
+{phang2}
 {opt pre} specifies whether the LaTeX package should be loaded at the beginning of the preamble (the default is to load the package at the end of the preamble).
 
-{phang3}
+{phang2}
 {opt nextlines(strlist)} adds the text {it:string} to the next line.
 Multiple lines can be added by using double quotes,
 i.e., specify {it:strlist} as "{it:First line}" "{it:Second line}" etc.
@@ -181,10 +195,10 @@ i.e., specify {it:strlist} as "{it:First line}" "{it:Second line}" etc.
 {cmd:beforetext()} and {cmd:aftertext()} may also be repeated
 to add multiple paragraphs separated by an empty line.
 
-{phang2}
+{pmore}
 Either option, when specified, automatically defines
 two new LaTeX macros
-{it:\sq{}} and {it:\dq{}}
+{bf:\sq{}} and {bf:\dq{}}
 for single quotation and double quotation, respectively.
 These allow for using quotations within text.
 Otherwise, {help local} and {help global} macros can be used
@@ -212,16 +226,16 @@ For example, you may want to add a custom column header after the table has been
 without having to tinker with the {help collect} commands.
 {cmd:inject()} may be specified multiple times.
 
-{phang2}
+{pmore}
 Currently, the only {it:inject_opts} is
 {opt nextlines(strlist)}.
 
-{phang3}
+{phang2}
 {opt nextlines(strlist)} adds the text {it:string} after the row specified by {it:rownum}.
 Multiple lines can be added by using double quotes,
 i.e., specify {it:strlist} as "{it:First line}" "{it:Second line}" etc.
 
-{phang2}
+{pmore}
 Note that this option works by modifying the "fragment"
 (the {it:tabular} environment produced by earlier commands).
 When it's used, the output becomes the new "fragment".
@@ -259,19 +273,19 @@ footnotes are centered by default and do not have the same width as the table,
 and there is no option to rotate the table.
 {cmd:styletextab} addresses these issues.
 It replaces {bf:\cline} with the {bf:\cmidrule} of the
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/booktabs/booktabs.pdf":booktabs} package for aesthetically pleasing vertical spacing.
+{browse "https://ctan.org/pkg/booktabs":booktabs} package for aesthetically pleasing vertical spacing.
 It also wraps footnotes within the {bf:\tablenotes} environment of the
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/threeparttable/threeparttable.pdf":threeparttable} package for proper formatting.
+{browse "https://ctan.org/pkg/threeparttable":threeparttable} package for proper formatting.
 Additionally, {cmd:styletextab} offers an option to rotate tables
 (i.e., switch to landscape layout)
 by wrapping tables within the {bf:\landscape} environment of
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/pdflscape/pdflscape.pdf":pdflscape} package.
+{browse "https://ctan.org/pkg/pdflscape":pdflscape} package.
 
 {pstd}
 {cmd:styletextab}
 is extensible as other LaTeX packages can be added to further customize the preamble
 (for example,
-{browse "https://ftp.heanet.ie/mirrors/ctan.org/tex/macros/latex/contrib/geometry/geometry.pdf":geometry}
+{browse "https://ctan.org/pkg/geometry":geometry}
 to change the page layout).
 It also allows for simple reporting with the ability to add text before or after the table.
 
