@@ -1,10 +1,10 @@
 {smcl}
-{* version 1.1  02feb2022  Gorkem Aksaray <aksarayg@tcd.ie>}{...}
+{* version 1.3  05jun2026  Gorkem Aksaray <aksarayg@tcd.ie>}{...}
 {viewerjumpto "Syntax" "uniqueby##syntax"}{...}
 {viewerjumpto "Description" "uniqueby##description"}{...}
 {viewerjumpto "Options" "uniqueby##options"}{...}
-{viewerjumpto "Stored results" "uniqueby##results"}{...}
 {viewerjumpto "Examples" "uniqueby##examples"}{...}
+{viewerjumpto "Stored results" "uniqueby##results"}{...}
 {viewerjumpto "Author" "uniqueby##author"}{...}
 {vieweralsosee "gautils" "help gautils"}{...}
 {cmd:help uniqueby}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
@@ -20,15 +20,16 @@
 {title:Syntax}
 
 {p 8}
-{cmd: uniqueby} {varname} {ifin} [{cmd:,} {opt by(varname)}]
+{cmd: uniqueby} {varname} {ifin} [{cmd:,} {opt by(varname)} {opt compact}]
 
 
 {marker description}{...}
 {title:Description}
 
 {pstd}
-{cmd:uniqueby} displays and stores the number of unique values of {varname} for each group
-specifed in {opt by(varname)}.
+{cmd:uniqueby} displays and stores the number of unique (distinct, nonmissing) values of {varname}.
+When {opt by()} option is specified, it additionally reports the number of unique values of {varname}
+within each group defined by {opt by()}.
 
 
 {marker options}{...}
@@ -36,6 +37,10 @@ specifed in {opt by(varname)}.
 
 {phang}
 {opt by(varname)} specifies the group by which the unique values are displayed.
+
+{phang}
+{opt compact} is only relevant when {opt by()} is specified.
+It suppresses the display of 0 unique values within {opt by()} groups for a more compact view.
 
 
 {marker examples}{...}
@@ -59,8 +64,8 @@ specifed in {opt by(varname)}.
 {synopt:{cmd:r(r)}}number of distinct values{p_end}
 
 {p2col 7 15 19 2: and if {opt by(varname)} is specified and all groups are integer numeric...}{p_end}
-{synopt:{cmd:r(N}_{it:group#}{cmd:)}  }number of observations in group #{p_end}
-{synopt:{cmd:r(r}_{it:group#}{cmd:)}  }number of distinct values in group #{p_end}
+{synopt:{cmd:r(N_by}{it:#}{cmd:)}  }number of observations in group #{p_end}
+{synopt:{cmd:r(r_by}{it:#}{cmd:)}  }number of distinct values in group #{p_end}
 {p2colreset}{...}
 
 
