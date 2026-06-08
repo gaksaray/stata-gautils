@@ -18,7 +18,7 @@
 {stata which categorize:categorize} module to create indicator variables with automatic labels
 
 {phang}
-{stata which clearlab:clearlab}: module to clear all labels and notes
+{help clearlab}: module to clear all labels and notes
 
 {phang}
 {stata which compfmt:compfmt}: module to compress display formats

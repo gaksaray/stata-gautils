@@ -1,14 +1,18 @@
 v 3
 d 'CLEARLAB': module to clear all labels and notes
 d
-d {cmd:clearlab} removes all variable labels, drops all value labels and detaches
-d them from the variables, and drops all notes from the dataset and variables.
-d It is especially useful when imported data has some of these characteristics
-d that are not going to be used, and thus clean slate is preferred.
+d {cmd:clearlab} removes all labels and notes from the dataset in memory. It is
+d especially useful when imported data has some of these characteristics that
+d are not going to be used, and thus clean slate is preferred.
 d
-d Distribution-Date: 20210622
+d KW: labels
+d KW: value labels
+d KW: notes
+d
+d Distribution-Date: 20260608
 d
 d Author: Gorkem Aksaray, Trinity College Dublin
 d Support: aksarayg@tcd.ie
 d
 f clearlab.ado
+f clearlab.sthlp
