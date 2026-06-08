@@ -6,9 +6,14 @@ d wrapper for {cmd:capture drop} and useful when you want to drop a group of
 d variables but do not want your program to stop if one or more of specified
 d variables are not currently in the dataset.
 d
-d Distribution-Date: 20210630
+d KW: drop
+d KW: capture
+d KW: variables
+d
+d Distribution-Date: 20260608
 d
 d Author: Gorkem Aksaray, Trinity College Dublin
 d Support: aksarayg@tcd.ie
 d
 f capdrop.ado
+f capdrop.sthlp

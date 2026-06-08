@@ -1,21 +1,25 @@
-*! version 1.0  30jun2021  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.0.1  08jun2026  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Capture drop a list of variables without an error
-*! 
-*! Syntax
-*! ------
-*!   capdrop varlist
 *!
-*! Examples
-*! --------
-*!   sysuse auto, clear
-*!   capdrop price pricesq        // drops price with no errors
-*!   capdrop rep?? junk*          // drops rep78 (you may use wildcards)
-*!   capdrop mpg-trunk gear_ratio // drops four non-consecutive variables
+*! Changelog
+*! ---------
+*!   [v1.0.1]
+*!     - Hyphenated ranges written with spaces around the dash (e.g.,
+*!       mpg - trunk) were split into separate tokens, so only the range
+*!       endpoints were dropped. Spaces around the range operator are now
+*!       stripped before parsing, so the full range is dropped, matching the
+*!       behavior of drop.
+*!   [v1.0.0]
+*!     - Initial release.
 
 capture program drop capdrop
 program capdrop
     version 12
     syntax anything
+    while strpos("`anything'", " -") | strpos("`anything'", "- ") {
+        local anything : subinstr local anything " -" "-", all
+        local anything : subinstr local anything "- " "-", all
+    }
     foreach word of local anything {
         if strpos("`word'", "-") != 0 | ///
            strpos("`word'", "*") != 0 | ///

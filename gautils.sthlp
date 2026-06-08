@@ -12,7 +12,7 @@
 {title:Modules}
 
 {phang}
-{stata which capdrop:capdrop}: module to drop a list of variables without an error
+{help capdrop}: module to drop a list of variables without an error
 
 {phang}
 {stata which categorize:categorize} module to create indicator variables with automatic labels
