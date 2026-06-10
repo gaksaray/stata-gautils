@@ -3,7 +3,7 @@
 *!
 *! Changelog
 *! ---------
-*!   [1.0]
+*!   [1.0.0]
 *!     - Initial public release.
 
 capture program drop dummify

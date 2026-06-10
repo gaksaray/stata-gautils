@@ -4,7 +4,7 @@ d
 d {cmd:dummify} creates a set of indicator variables from a categorical
 d variable with non-negative integer values, one per level, and automatically
 d labels them in the form of "variable label = value label". It is essentially
-d a more convenient implementation of tab, gen().
+d a more convenient implementation of tabulate, generate().
 d
 d Distribution-Date: 20260610
 d
