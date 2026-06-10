@@ -15,6 +15,7 @@ f c/categorize.sthlp
 f c/clearlab.ado
 f c/clearlab.sthlp
 f c/compfmt.ado
+f c/compfmt.sthlp
 f d/dcolmat.ado
 f d/dcols.ado
 f d/dichotomize.ado
@@ -25,8 +26,6 @@ f e/eps2pdf.ado
 f e/eps2pdf.sthlp
 f e/estadd_distinct.ado
 f e/estcorr.ado
-f f/fmtnum.ado
-f f/fmtstr.ado
 f f/fragtextab.ado
 f f/fragtextab.sthlp
 f f/frappend.ado

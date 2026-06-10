@@ -1,8 +1,6 @@
 v 3
 d F-directory
 
-p fmtnum module to reformat numeric variables
-p fmtstr module to reformat string variables
 p fragtextab module to fragmentize a LaTeX table
 p frappend module to append frame(s) onto current frame
 p frapply module to nondestructively apply command(s) to a frame

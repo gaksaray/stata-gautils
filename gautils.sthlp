@@ -18,7 +18,7 @@
 {help clearlab}: module to clear all labels and notes
 
 {phang}
-{stata which compfmt:compfmt}: module to compress display formats
+{help compfmt}: module to compress display formats
 
 {phang}
 {stata which dcolmat:dcolmat}: module to return maximum number of integer digits of numeric matrices
@@ -40,12 +40,6 @@
 
 {phang}
 {stata which estcorr:estcorr}: module to post correlations in sequential manner
-
-{phang}
-{stata which fmtnum:fmtnum}: module to reformat numeric variables
-
-{phang}
-{stata which fmtstr:fmtstr}: module to reformat string variables
 
 {phang}
 {help fragtextab}: module to fragmentize a LaTeX table
