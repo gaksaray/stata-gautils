@@ -15,9 +15,6 @@
 {help capdrop}: module to drop a list of variables without an error
 
 {phang}
-{stata which categorize:categorize} module to create indicator variables with automatic labels
-
-{phang}
 {help clearlab}: module to clear all labels and notes
 
 {phang}
@@ -31,6 +28,9 @@
 
 {phang}
 {help dichotomize}: module to dichotomize a numeric variable
+
+{phang}
+{help dummify}: module to create indicator variables with automatic labels
 
 {phang}
 {help eps2pdf}: module to convert EPS files to PDF files
