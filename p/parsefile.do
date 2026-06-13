@@ -1,76 +1,130 @@
 **# Torture test
 
-// Windows
+// Run the whole file once: it stops with an error on the first mismatch,
+// otherwise it reports success at the end. An omitted option expects "".
+
+capture program drop checkret
+program checkret
+    syntax [, Path(string) Filename(string) Extension(string)]
+    if `"`r(path)'"'      != `"`path'"'      ///
+     | `"`r(filename)'"'  != `"`filename'"'  ///
+     | `"`r(extension)'"' != `"`extension'"' {
+        di as error "parsefile returned unexpected results"
+        di as error `"  expected:  path=|`path'|  filename=|`filename'|  extension=|`extension'|"'
+        di as error `"  returned:  path=|`r(path)'|  filename=|`r(filename)'|  extension=|`r(extension)'|"'
+        exit 9
+    }
+end
+
+// No path
 
 parsefile using mydata.dta
-ret list
+checkret, filename(mydata) extension(dta)
+
+parsefile using mydata
+checkret, filename(mydata)
+
+parsefile using "my data"
+checkret, filename("my data")
+
+parsefile using "my data.dta"
+checkret, filename("my data") extension(dta)
+
+// Windows paths
 
 parsefile using c:mydata.dta
-ret list
-
-parsefile using "my data"
-ret list
-
-parsefile using "my data.dta"
-ret list
+checkret, path("c:") filename(mydata) extension(dta)
 
 parsefile using myproj\mydata
-ret list
+checkret, path(`"myproj\"') filename(mydata)
 
 parsefile using "my project\my data"
-ret list
+checkret, path(`"my project\"') filename("my data")
 
 parsefile using C:\analysis\data\mydata
-ret list
+checkret, path(`"C:\analysis\data\"') filename(mydata)
 
 parsefile using "C:\my project\my data"
-ret list
+checkret, path(`"C:\my project\"') filename("my data")
 
 parsefile using ..\data\mydata
-ret list
+checkret, path(`"..\data\"') filename(mydata)
 
 parsefile using "..\my project\my data"
-ret list
+checkret, path(`"..\my project\"') filename("my data")
 
-// Mac and Unix
-
-parsefile using mydata.dta
-ret list
-
-parsefile using ~friend/mydata.dta
-ret list
-
-parsefile using "my data"
-ret list
-
-parsefile using "my data.dta"
-ret list
+// Unix and Mac paths
 
 parsefile using myproj/mydata
-ret list
+checkret, path("myproj/") filename(mydata)
 
 parsefile using "my project/my data"
-ret list
+checkret, path("my project/") filename("my data")
+
+parsefile using ~friend/mydata.dta
+checkret, path("~friend/") filename(mydata) extension(dta)
 
 parsefile using ~/analysis/data/mydata
-ret list
+checkret, path("~/analysis/data/") filename(mydata)
 
 parsefile using "~/my project/my data"
-ret list
+checkret, path("~/my project/") filename("my data")
 
 parsefile using ../data/mydata
-ret list
+checkret, path("../data/") filename(mydata)
 
 parsefile using "../my project/my data"
-ret list
+checkret, path("../my project/") filename("my data")
 
 parsefile using "~:My Data:myfile.raw"
-ret list
+checkret, path("~:My Data:") filename(myfile) extension(raw)
 
-// URL
+// URLs
 
 parsefile using https://www.stata-press.com/data/r17/autocost
-ret list
+checkret, path("https://www.stata-press.com/data/r17/") filename(autocost)
 
 parsefile using "https://www.stata-press.com/data/r17/popkahn"
-ret list
+checkret, path("https://www.stata-press.com/data/r17/") filename(popkahn)
+
+parsefile using https://www.stata-press.com/data/r17/auto.dta
+checkret, path("https://www.stata-press.com/data/r17/") filename(auto) extension(dta)
+
+// Relative paths with "." components (must not stop early)
+
+parsefile using ./mydata.dta
+checkret, path("./") filename(mydata) extension(dta)
+
+parsefile using ../a/./b/mydata
+checkret, path("../a/./b/") filename(mydata)
+
+// Multiple-dot names (extension splits on the last dot)
+
+parsefile using archive.tar.gz
+checkret, filename("archive.tar") extension(gz)
+
+parsefile using my.data.dta
+checkret, filename("my.data") extension(dta)
+
+// Dots in a directory name must not leak into the extension
+
+parsefile using ~/my.dir/data
+checkret, path("~/my.dir/") filename(data)
+
+// Dotfiles (leading dot is part of the name, not an extension)
+
+parsefile using .gitignore
+checkret, filename(".gitignore")
+
+parsefile using .hidden.txt
+checkret, filename(".hidden") extension(txt)
+
+// Trailing separators (no final component)
+
+parsefile using mydir/
+checkret, path("mydir/")
+
+parsefile using "my dir\"
+checkret, path(`"my dir\"')
+
+di as result _n "All parsefile tests passed."
