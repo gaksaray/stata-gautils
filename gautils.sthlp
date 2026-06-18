@@ -1,14 +1,17 @@
 {smcl}
+{viewerjumpto "Modules" "gautils##modules"}{...}
+{viewerjumpto "Author" "gautils##author"}{...}
 {cmd:help gautils}{right: {browse "https://github.com/gaksaray/stata-gautils/"}}
-
 {hline}
 
 {title:Title}
 
-{pstd}{cmd:gautils} {hline 2} A collection of Stata modules developed by Gorkem Aksaray
+{pstd}{cmd:gautils} {hline 2} A collection of Stata modules
+
+{pstd}{stata `"net install gautils, from("https://raw.githubusercontent.com/gaksaray/stata-gautils/master") replace"':Click to install {bf:gautils}}
 
 
-{marker Modules}{...}
+{marker modules}{...}
 {title:Modules}
 
 {phang}
@@ -94,3 +97,13 @@
 
 {phang}
 {help uniqueby}: module to report number of unique values by group
+
+
+{marker author}{...}
+{title:Author}
+
+{pstd}
+Gorkem Aksaray, Trinity College Dublin.{p_end}
+{p 4}Email: {browse "mailto:aksarayg@tcd.ie":aksarayg@tcd.ie}{p_end}
+{p 4}Personal Website: {browse "https://sites.google.com/site/gorkemak/":sites.google.com/site/gorkemak}{p_end}
+{p 4}GitHub: {browse "https://github.com/gaksaray/":github.com/gaksaray}{p_end}
