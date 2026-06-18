@@ -1,8 +1,11 @@
-*! version 1.5.1  18jun2026  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.5.2  18jun2026  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Restyle LaTeX tables exported by the collect suite of commands
 *! 
 *! Changelog
 *! ---------
+*!   [1.5.2]
+*!     - Simplified LaTeX landscape handling to ensure landscape blocks
+*!       work correctly in standalone outputs.
 *!   [1.5.1]
 *!     - tableonly in standalone mode produced right-truncated tables.
 *!       This is now fixed via \maxdimen modifier.
@@ -248,7 +251,12 @@ program styletextab, rclass
         }
     }
     if "`lscape'" != "" {
-        file write `tf' "\usepackage{pdflscape}" _n
+        if  "`docclass'" == "article" {
+            file write `tf' "\usepackage{pdflscape}" _n
+        }
+        else if "`docclass'" == "standalone" {
+            file write `tf' "\newenvironment{landscape}{}{}" _n
+        }
     }
     if "`booktabs'" != "nobooktabs" {
         file write `tf' "\usepackage{booktabs}" _n
@@ -339,12 +347,7 @@ program styletextab, rclass
     if "`fragment'" == "" { // !fragment: start
     
     if "`lscape'" != "" {
-        if  "`docclass'" == "article" {
-            file write `tf' "\begin{landscape}" _n
-        }
-        else if "`docclass'" == "standalone" {
-            file write `tf' "\IfStandalone{}{\begin{landscape}}"
-        }
+        file write `tf' "\begin{landscape}" _n
     }
     file write `tf' "\begin{table}[!h]" _n
     if "`tabsize'" != "" {
@@ -464,12 +467,7 @@ program styletextab, rclass
     file write `tf' "\end{threeparttable}" _n
     file write `tf' "\end{table}" _n
     if "`lscape'" != "" {
-        if  "`docclass'" == "article" {
-            file write `tf' "\end{landscape}" _n
-        }
-        else if "`docclass'" == "standalone" {
-            file write `tf' "\IfStandalone{}{\end{landscape}}"
-        }
+        file write `tf' "\end{landscape}" _n
     }
     
     if "`tableonly'" == "" { // !tableonly: start
