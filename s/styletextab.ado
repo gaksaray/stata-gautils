@@ -1,8 +1,14 @@
-*! version 1.5.0 28may2026  Gorkem Aksaray <aksarayg@tcd.ie>
+*! version 1.5.1  18jun2026  Gorkem Aksaray <aksarayg@tcd.ie>
 *! Restyle LaTeX tables exported by the collect suite of commands
 *! 
 *! Changelog
 *! ---------
+*!   [1.5.1]
+*!     - tableonly in standalone mode produced right-truncated tables.
+*!       This is now fixed via \maxdimen modifier.
+*!     - threeparttable package is now loaded after \centering and before
+*!       \caption. This should improve the appearance of the table title.
+*!       Users are encouraged to load caption package by usepackage option.
 *!   [1.5.0]
 *!     - Added standalone option to use the standalone document class instead
 *!       of article. This is now the default for tableonly and fragment modes.
@@ -185,9 +191,13 @@ program styletextab, rclass
         local docclass "article"
         local docclass_opts = subinstr(`"`= strtrim("`pt' `papersize'")'"', " ", ",", .)
     }
-    else if "`fragment'" != "" | "`tableonly'" != "" {
+    else if "`fragment'" != "" {
         local docclass "standalone"
-        local docclass_opts "varwidth"
+        local docclass_opts ""
+    }
+    else if "`tableonly'" != "" {
+        local docclass "standalone"
+        local docclass_opts "varwidth=\maxdimen"
     }
     file write `tf' "\documentclass[`docclass_opts']{`docclass'}" _n
     
@@ -296,7 +306,7 @@ program styletextab, rclass
     }
     
     if  "`docclass'" == "article" {
-        
+    
     if `"`beforetext0'`aftertext0'"' != "" {
         file write `tf' "\newcommand{\sq}[1]{\`#1'}" _n
         file write `tf' "\newcommand{\dq}[1]{\`\`#1''}" _n
@@ -341,6 +351,19 @@ program styletextab, rclass
         file write `tf' "\\`tabsize'" _n
     }
     
+    * centering
+    file seek `fh' tof
+    file read `fh' line
+    while r(eof) == 0 {
+        if `"`macval(line)'"' == "\centering" {
+            file write `tf' `"`macval(line)'"' _n
+            file seek `fh' eof
+        }
+        file read `fh' line
+    }
+    
+    file write `tf' "\begin{threeparttable}" _n
+    
     * caption
     file seek `fh' tof
     file read `fh' line
@@ -351,14 +374,8 @@ program styletextab, rclass
                 file write `tf' "\label{`label'}" _n
             }
         }
-        else if `"`macval(line)'"' == "\centering" {
-            file write `tf' `"`macval(line)'"' _n
-            file seek `fh' eof
-        }
         file read `fh' line
     }
-    
-    file write `tf' "\begin{threeparttable}" _n
     
     } // !fragment: end
     
